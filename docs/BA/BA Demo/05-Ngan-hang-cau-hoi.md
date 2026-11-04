@@ -21,7 +21,7 @@ Ngân hàng tốt = ma trận mới có cái để bốc. Với team nhỏ, **qu
 | subject_id | ✓ | |
 | grade_levels[] | ✓ | Một câu có thể ôn cho nhiều lớp (vd. hàm số 11–12) |
 | topic_ids[] | ✓ ≥1 | Chủ đề chính; phụ để tag |
-| cognitive_level | ✓ | NB/TH/VD/VDC |
+| cognitive_level | ✓ | NB/TH/VD/VDC — **trên mỗi QuestionItem** (Đ/S: từng ý). Báo cáo 3 mức: VDC→VD |
 | item_format | ✓ | |
 | status | ✓ | draft / in_review / approved / rejected / archived |
 | stem (nội dung) | ✓ | Text + LaTeX |
@@ -48,33 +48,36 @@ Question
 Ràng buộc: đúng đúng 1 choice.  
 (Đa đáp án đúng để sau — ít dùng trong đề TN Toán hiện tại.)
 
-### 3.2. Đúng / Sai (group)
+### 3.2. Đúng / Sai (group) — mức theo từng ý (đã chốt)
 
 ```
-Stimulus? (đoạn mở đầu chung)
-Question (format=TRUE_FALSE_GROUP)
-  items[4]:
+Stimulus? (đoạn mở đầu chung — chỉ bối cảnh, không mang cognitive_level filter)
+QuestionGroup (hiển thị 1 câu Đ/S)
+  items[4]:  // mỗi ý = QuestionItem độc lập
     stem_idea
     correct: true|false
-    cognitive_level? (optional per idea)
-  explanation_per_idea / explanation_group
+    cognitive_level: NB|TH|VD|VDC   // BẮT BUỘC
+    topic_ids[]
+    explanation
 ```
 
-UI thí sinh: hiện 4 ý, mỗi ý 2 radio Đ/S.  
-Chấm: theo bảng điểm Phần II nếu exam dùng policy đó; hoặc 0,25/ý nếu ma trận tự do quy định khác.
+UI thí sinh: 4 ý, mỗi ý Đ/S.  
+Chấm điểm group theo policy TN (0,1/0,25/0,5/1).  
+Ma trận / tồn kho / đặc tả: theo **ý**.
 
-### 3.3. Trả lời ngắn
+### 3.3. Trả lời ngắn — chấm nghiêm (đã chốt)
 
 ```
 Question
-  stem
-  accepted_answers[]: {value_normalized, aliases[]}
+  stem   // PHẢI chứa quy ước làm tròn / đơn vị nếu cần
+         // vd. "Kết quả làm tròn đến hàng phần trăm"
+  accepted_answers[]: {value_normalized, aliases[]}  // alias = tương đương tuyệt đối do GV khai
   answer_type: number | string | expression
-  tolerance?  // số
-  display_hint? // "làm tròn đến 2 chữ số"
+  // KHÔNG dùng tolerance trong mode thi
 ```
 
-**Chuẩn hóa:** strip khoảng trắng, thống nhất dấu `.` / `,`, so khớp số.
+**Chấm:** normalize (trim, dấu thập phân) rồi **exact match** với key. Sai khác biệt làm tròn → 0 điểm.  
+Giống kỷ luật đáp án thi ĐH/TN: đề đã nói cách làm tròn thì chỉ đáp án đúng quy ước mới được tính.
 
 ### 3.4. Tự luận (P2)
 

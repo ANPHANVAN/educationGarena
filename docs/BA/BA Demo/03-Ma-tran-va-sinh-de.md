@@ -18,72 +18,80 @@ Mỗi ô ma trận trả lời: *“Lấy bao nhiêu câu thỏa điều kiện 
 - `item_format` ∈ {MCQ_SINGLE, TRUE_FALSE_GROUP, SHORT_ANSWER, …}  
 - (optional) `competency`, `chapter`, tags
 
-**Sinh đề** = với mỗi ô, lấy ngẫu nhiên (hoặc theo trọng số) đủ số câu từ ngân hàng **còn đủ tồn kho**, rồi ghép thành một **ExamVersion** (đề cụ thể / mã đề).
+**Sinh đề** = với mỗi ô, lấy ngẫu nhiên (hoặc theo trọng số) đủ đơn vị từ ngân hàng **còn đủ tồn kho**, tạo **ExamVersion DRAFT + Đặc tả DRAFT** → GV chỉnh → **khóa** mới đưa vào thi/luyện chính thức.
 
 ```
-Ma trận (Blueprint)
+Ma trận (Blueprint)  [COARSE | FINE]
         │
         ▼
-  Với mỗi ô: query QuestionBank
+  Với mỗi ô: query QuestionBank (item-level với Đ/S)
         │
         ▼
-  Chọn N câu thỏa filter + ràng buộc toàn cục
+  Chọn N đơn vị thỏa filter + ràng buộc toàn cục
         │
         ▼
-  ExamVersion (danh sách câu đã khóa thứ tự/điểm)
+  ExamVersion DRAFT + ExamSpec DRAFT (đặc tả)
+        │
+        ▼
+  GV điều chỉnh (đổi câu cùng ô, reorder, sửa YCCĐ)
+        │
+        ▼
+  Validate khớp ma trận → LOCK (snapshot)
         │
         ▼
   Gắn vào Session thi / Luyện tập
 ```
 
+Chi tiết đặc tả & quyết định chốt: **[09-Dac-ta-de-va-quy-tac-da-chot.md](./09-Dac-ta-de-va-quy-tac-da-chot.md)**.
+
 ---
 
-## 2. Hai cách user tạo ma trận
+## 2. Cách user tạo ma trận + độ chi tiết
 
-### A. Dùng template có sẵn (nên làm trước)
+User chọn **granularity**:
 
-Ví dụ template `TN_THPT_TOAN_2025` đã khai báo sẵn các ô:
+| Mode | Filter ô | Ai dùng |
+|------|----------|---------|
+| **COARSE** | Phần + chủ đề L1 + mức (NB/TH/VD/VDC) + format | Nhanh, luyện, không soi sát năm |
+| **FINE** | COARSE + dạng bài L2 / đơn vị kiến thức mịn | Kiểm soát chi tiết, sát phân bố năm |
 
-| Phần | Format | Số đơn vị | Gợi ý mức | Điểm rule |
-|------|--------|-----------|-----------|-----------|
-| I | MCQ_SINGLE | 12 câu | NB–TH | 0,25/câu |
-| II | TRUE_FALSE_GROUP | 4 nhóm × 4 ý | TH–VD | bảng 0,1/0,25/0,5/1 |
-| III | SHORT_ANSWER | 6 câu | VD–VDC | 0,5/câu |
+### A. Template có sẵn
 
-User có thể:
+Ví dụ `TN_THPT_TOAN_2025`:
 
-- Giữ nguyên số lượng phần, chỉ chỉnh **phân bổ chủ đề** (ô con), hoặc  
-- Chỉ nhấn “Sinh đề chuẩn TN” → hệ thống dùng phân bổ mặc định (cấu hình bởi giáo viên).
+| Phần | Format | Số đơn vị hiển thị | Đơn vị filter bank | Điểm rule |
+|------|--------|--------------------|--------------------|-----------|
+| I | MCQ_SINGLE | 12 câu | 12 item | 0,25/câu |
+| II | TRUE_FALSE_GROUP | 4 câu (mỗi câu 4 ý) | **theo ý** (16 ý) + ràng buộc đủ group | 0,1/0,25/0,5/1 theo số ý đúng |
+| III | SHORT_ANSWER | 6 câu | 6 item | 0,5/câu |
 
-### B. Ma trận tự do (giáo viên / luyện tập)
+Phân bổ chủ đề mặc định: xem [10](./10-Danh-muc-chu-de-Toan-seed.md). User COARSE chỉ sửa số theo L1; FINE sửa thêm L2.
 
-UI kiểu bảng:
+### B. Ma trận tự do
 
 | Chủ đề \ Mức | NB | TH | VD | VDC |
 |--------------|----|----|----|-----|
-| Khảo sát hàm số | 2 | 2 | 1 | 0 |
+| Khảo sát hàm số | 2 | 2 | 1 | 1 |
 | Tích phân | 1 | 1 | 1 | 1 |
-| … | | | | |
 
-User nhập số → hệ thống kiểm tra **pool có đủ câu không** trước khi sinh.
-
-Đây đúng ý: *“từ dạng đề và mức độ khó, bốc ra được số lượng câu hỏi”*.
+Với Đ/S: ô có thể là “số ý mức X thuộc topic Y” hoặc “số group + profile mức các ý” — UI ưu tiên **profile theo group** cho gần đề thật (vd. 1 group hàm số: ý mức TH,TH,VD,VDC).
 
 ---
 
-## 3. Đơn vị đếm trong ô — tránh bug nghiệp vụ
+## 3. Đơn vị đếm & Đ/S theo từng ý (đã chốt chuẩn)
 
-| Format | Đếm gì trong ma trận? | Ghi chú |
-|--------|------------------------|---------|
-| MCQ_SINGLE | 1 câu = 1 item | Đơn giản |
-| SHORT_ANSWER | 1 câu = 1 item | Đơn giản |
-| TRUE_FALSE_GROUP | **1 nhóm = 1 đơn vị ma trận** (gồm 4 ý) | Không đếm 4 ô riêng trừ khi giáo viên muốn ma trận theo ý |
-| Stimulus + nhiều câu | Stimulus không tính điểm; các item con mới tính | Giống ngữ liệu bên trái demo Bộ |
+| Format | Đơn vị chấm / metadata mức | Ghi chú |
+|--------|----------------------------|---------|
+| MCQ_SINGLE | 1 câu = 1 item | |
+| SHORT_ANSWER | 1 câu = 1 item | Exact match; làm tròn ghi trong stem |
+| TRUE_FALSE | **Mỗi ý = 1 item** (`cognitive_level` bắt buộc) | Stimulus/group = bối cảnh chung, **không** mang mức để filter |
+| Stimulus | Không tính điểm | Ngữ liệu dùng chung |
 
-**Khuyến nghị:** ma trận Phần II đếm theo **số câu Đ/S (group)**. Metadata mức độ có thể gắn per-ý; khi filter theo mức, rule cần chốt:
+**Chốt (không làm bản gộp mức cả group):**
 
-- **MVP đơn giản:** gắn 1 mức đại diện cho cả group (mức cao nhất trong 4 ý), hoặc  
-- **Chuẩn hơn:** mỗi ý là item riêng cùng `group_id`, ma trận Phần II filter theo ý (phức tạp hơn — để sau).
+- Bank & ma trận & đặc tả & tồn kho đều nhìn **từng ý**.  
+- Sinh đề Phần II: chọn **cả group** sao cho tập 4 ý khớp phân bố mức/chủ đề yêu cầu (chiến lược A trong file 09).  
+- Chấm điểm vẫn theo số ý đúng trong group khi dùng policy TN.
 
 ---
 
@@ -93,7 +101,7 @@ User nhập số → hệ thống kiểm tra **pool có đủ câu không** trư
 
 1. Mỗi ô: `available_count >= requested_count`, nếu không → báo thiếu (liệt kê ô thiếu), **không sinh đề cụt**.  
 2. Không lấy trùng cùng một `question_id` trong một ExamVersion.  
-3. Câu thuộc group/stimulus: lấy cả bundle, không tách nửa.  
+3. Câu thuộc group/stimulus: lấy cả bundle, không tách nửa.
 4. Tôn trọng `status = approved` (chỉ câu đã duyệt mới vào đề thi chính thức; luyện tập có thể cho `approved` + `practice_ok`).
 
 ### 4.2. Ràng buộc nên có sớm
@@ -112,23 +120,25 @@ User nhập số → hệ thống kiểm tra **pool có đủ câu không** trư
 ## 5. Thuật toán sinh đề (mức nghiệp vụ, chưa phải code tối ưu)
 
 ```
-Input: Blueprint (danh sách Cell {filters, count, score_rule, section})
-Output: ExamVersion hoặc lỗi thiếu pool
+Input: Blueprint (cells, granularity, score policies)
+Output: ExamVersion DRAFT + ExamSpec DRAFT  |  ShortageReport
 
-1. Validate tổng điểm ≈ 10 (với template chuẩn) hoặc cảnh báo nếu lệch.
-2. For each Cell in Blueprint.cells (theo thứ tự section):
-     candidates = Query(bank, filters, status=approved)
-     candidates = ApplyExclusion(candidates, already_picked, recent_history)
-     if len(candidates) < cell.count: fail with ShortageReport
-     picked = RandomSample(candidates, cell.count)  // hoặc weighted
-     append to exam with section order + score_rule
-3. Assign display_order (có thể shuffle trong section nếu template cho phép)
-4. Snapshot: lưu bản sao metadata câu vào ExamVersion
-   (đề đã phát hành không bị sửa khi bank sửa câu sau này)
-5. Return ExamVersion
+1. Validate tổng điểm ≈ 10 (template chuẩn) hoặc cảnh báo nếu lệch.
+2. For each Cell (theo section):
+     candidates = Query(bank, filters ở mức ITEM, status=approved)
+     // Phần II: query group có bộ ý thỏa profile mức/topic
+     candidates = ApplyExclusion(...)
+     if không đủ: fail ShortageReport (liệt kê ô)
+     picked = RandomSample / weighted
+     append items (+ group bundle nếu Đ/S)
+3. Build ExamSpec rows từ metadata item + YCCĐ mặc định (từ bank)
+4. Assign display_order (draft — GV còn sửa được)
+5. Return DRAFT (chưa snapshot khóa)
+6. Sau khi GV chỉnh + Validate khớp ma trận → LOCK:
+     snapshot toàn bộ stem/key/metadata vào ExamVersion + ExamSpec
 ```
 
-**Snapshot:** rất quan trọng với đề thi trung tâm / tranh chấp điểm. Luyện tập có thể reference live hoặc snapshot nhẹ.
+**Snapshot chỉ sau LOCK.** Draft được sửa; đề đã có Attempt thì không sửa — clone version mới.
 
 ---
 
@@ -181,11 +191,12 @@ Cả hai đều cần **ExamVersion** cuối cùng để thí sinh làm. Matrix 
 
 ## 9. UX tối thiểu cho giáo viên (MVP)
 
-1. Xem tồn kho theo (chủ đề × mức × format).  
-2. Chọn template hoặc nhập bảng số.  
-3. Preview thiếu/đủ.  
-4. Nút **Sinh đề** → xem danh sách câu (ẩn đáp án tùy role) → **Xuất bản** vào kỳ thi / cho học sinh luyện.  
-5. (Nice) Nhân bản ma trận, khóa ma trận đã dùng thi thật.
+1. Xem tồn kho theo (chủ đề × mức × format) — **Đ/S đếm theo ý**.  
+2. Chọn template + mode COARSE/FINE; nhập/chỉnh bảng số.  
+3. Preview thiếu/đủ theo ô.  
+4. **Sinh đề** → màn **Đặc tả + danh sách câu** (đổi câu cùng ô, reorder, sửa YCCĐ).  
+5. **Khóa đề** (validate khớp ma trận) → xuất bản kỳ thi / luyện.  
+6. (Nice) Nhân bản ma trận; export đặc tả PDF.
 
 ---
 
@@ -193,5 +204,7 @@ Cả hai đều cần **ExamVersion** cuối cùng để thí sinh làm. Matrix 
 
 - Chỉ tag “dễ/khó” 2 mức rồi gọi là ma trận.  
 - Hard-code 50 câu × 0,2 điểm kiểu đề cũ 2006–2024.  
-- Coi 4 ý Đ/S như 4 câu MCQ độc lập khi tính điểm.  
-- Sinh đề khi thiếu pool rồi “bù câu lung tung” không theo ô — phá uy tín với giáo viên.
+- Coi 4 ý Đ/S như 4 câu MCQ độc lập khi **tính điểm** (điểm vẫn theo group) — nhưng **đừng** gộp một mức cho cả 4 ý khi phân loại.  
+- Bỏ qua đặc tả / xuất bản ngay sau random mà GV không review.  
+- Sinh đề khi thiếu pool rồi “bù câu lung tung” không theo ô.  
+- Short answer cho điểm “gần đúng” khi mode thi.

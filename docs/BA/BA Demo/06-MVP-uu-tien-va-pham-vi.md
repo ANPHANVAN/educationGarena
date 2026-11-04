@@ -8,15 +8,15 @@ Team: **2 dev (junior–middle) + 1 giáo viên**. Deadline nội bộ từng nh
 
 Một giáo viên có thể:
 
-1. Thêm câu hỏi Toán (MCQ, Đ/S group, trả lời ngắn) kèm chủ đề + mức độ.  
-2. Tạo ma trận (template TN THPT hoặc bảng chủ đề × mức).  
-3. Sinh đề khi đủ tồn kho; hệ thống báo thiếu nếu không đủ.  
-4. Mở một kỳ thi thử / link luyện cho học sinh.
+1. Thêm câu hỏi Toán (MCQ, Đ/S với **mức từng ý**, trả lời ngắn) kèm chủ đề + mức độ.  
+2. Tạo ma trận (template TN hoặc bảng chủ đề × mức), chọn COARSE/FINE.  
+3. Sinh đề khi đủ tồn kho; báo thiếu nếu không đủ.  
+4. Xem **đặc tả draft**, đổi câu/chỉnh YCCĐ, **khóa đề** rồi mở kỳ thi / luyện.  
 
 Một học sinh có thể:
 
-5. Đăng nhập → vào làm bài giao diện CBT tối giản (timer, palette, nộp bài).  
-6. Nhận điểm chấm đúng rule 3 phần (nếu dùng template TN).
+5. Đăng nhập → làm bài CBT tối giản (timer, palette, nộp bài).  
+6. Nhận điểm đúng rule 3 phần; short answer **exact match**.
 
 **Ngoài định nghĩa xong:** ranking, meme, AI PDF, chống gian lận ML, tự luận vào 10, đa môn, thanh toán phức tạp.
 
@@ -28,13 +28,14 @@ Một học sinh có thể:
 
 | Hạng mục | Ghi chú |
 |----------|---------|
-| Auth cơ bản (học sinh / giáo viên) | Có thể email + password; chưa cần SSO |
-| CRUD câu hỏi 3 format + LaTeX | |
-| Taxonomy Toán seed (chủ đề lớp 10–12) | Giáo viên cung cấp list |
-| Blueprint + sinh đề + kiểm tra tồn kho | Core |
-| Attempt thi + chấm MCQ / ĐS / short | |
+| Auth cơ bản (học sinh / giáo viên) | Email + password OK |
+| CRUD câu hỏi 3 format + LaTeX; Đ/S per-ý level | |
+| Taxonomy seed L1 (+ L2 tối thiểu) | Xem file 10; GV chỉnh |
+| Blueprint COARSE/FINE + sinh đề + tồn kho | Core |
+| **Đặc tả draft → chỉnh → khóa đề** | Core (file 09) |
+| Attempt + chấm MCQ / ĐS group / short exact | |
 | Template `TN_THPT_TOAN_2025` scoring | |
-| UI làm bài tối giản (học theo demo Bộ) | Không cần pixel-perfect |
+| UI làm bài tối giản (demo Bộ) | |
 
 ### P1 — ngay sau khi P0 chạy
 

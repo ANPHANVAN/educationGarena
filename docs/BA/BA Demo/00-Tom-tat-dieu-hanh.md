@@ -6,7 +6,7 @@ Nền tảng **ngân hàng câu hỏi + ma trận sinh đề + thi/luyện trên
 
 ## Core phải làm trước
 
-1. Câu hỏi có metadata: **chủ đề (dạng bài) × cấp độ tư duy × dạng thức**.  
+1. Câu hỏi có metadata: **chủ đề (dạng bài) × cấp độ tư duy × dạng thức (loại câu hỏi)**.  
 2. **Ma trận** quy định số câu mỗi ô → hệ thống **bốc** từ bank.  
 3. **Thi + chấm máy** 3 dạng: MCQ, Đúng/Sai (4 ý), Trả lời ngắn.  
 4. Luyện tập = tái sử dụng cùng engine (UI vui để sau).
@@ -19,8 +19,9 @@ Nền tảng **ngân hàng câu hỏi + ma trận sinh đề + thi/luyện trên
 | Kiểm tra 10–11–12 | Ma trận NB/TH/VD/VDC theo chương | Ma trận tự do + tồn kho |
 | Vào lớp 10 | Thường tự luận theo Sở | P2; đừng thiết kế chỉ MCQ |
 
-**Cấp độ:** Nhận biết → Thông hiểu → Vận dụng → (Vận dụng cao).  
-**Dạng thức ≠ mức độ ≠ chủ đề** — ba trục tách riêng trong DB.
+**Cấp độ:** NB → TH → VD → **VDC** (báo cáo 3 mức: VDC gộp VD).  
+**Dạng thức ≠ mức độ ≠ chủ đề** — ba trục tách riêng; Đ/S gắn mức **từng ý**.  
+**Sau bốc câu:** bắt buộc **đặc tả** → GV chỉnh → khóa đề. Short: làm tròn trong stem, chấm khớp đúng. Ma trận COARSE hoặc FINE do user chọn.
 
 ## Đối tượng hệ thống
 
@@ -38,7 +39,7 @@ Import đề: form + template text trước; AI bằng **API key user** sau.
 
 ## Việc team cần làm tiếp
 
-1. Giáo viên review file **02** + **03** (taxonomy + rule chấm).  
+1. GV review **09** (đã chốt) + tinh chỉnh taxonomy **10**.  
 2. Chốt segment MVP: chỉ ôn TN 12 hay cả kiểm tra định kỳ.  
-3. Seed 50 câu mẫu → code P0 theo **06**.  
-4. Bản thống nhất chuyển sang `docs/BA/BA chốt/`.
+3. Seed ~50 câu mẫu (Đ/S có mức từng ý) → code P0 theo **06** (có đặc tả).  
+4. Bản thống nhất → `docs/BA/BA chốt/`.

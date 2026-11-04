@@ -56,14 +56,16 @@ Giai đoạn 2 người: Teacher ≈ ContentAdmin; CenterAdmin có thể gộp T
 - **QuestionTag** — tag phụ (dạng “cực trị”, “thực tế kinh tế”…)  
 - **QuestionOwnership** — bank chung / bank tenant trung tâm  
 
-### 3.3. Ma trận & đề
+### 3.3. Ma trận, đặc tả & đề
 
 - **BlueprintTemplate** — mẫu (TN_THPT_TOAN_2025…)  
-- **Blueprint** — instance ma trận (các ô + rule điểm)  
-- **BlueprintCell** — filters + count + section + score_policy_ref  
+- **Blueprint** — instance ma trận; có `granularity`: COARSE | FINE  
+- **BlueprintCell** — filters (topic L1/L2, level, format, section) + count + score_policy_ref  
 - **Exam** — metadata đề (tên, môn, thời gian mặc định)  
-- **ExamVersion** — bản đã sinh / đã khóa danh sách câu + snapshot  
-- **ExamVersionItem** — vị trí hiển thị, điểm tối đa, reference/snapshot câu  
+- **ExamVersion** — draft | locked; danh sách câu + snapshot khi locked  
+- **ExamVersionItem** — vị trí hiển thị, điểm tối đa, reference/snapshot **QuestionItem** (Đ/S = từng ý)  
+- **ExamSpec** — đặc tả đề (draft | locked) gắn ExamVersion  
+- **ExamSpecRow** — dòng đặc tả: vị trí, YCCĐ, topic, level, format, trỏ item  
 
 ### 3.4. Tổ chức thi & luyện
 
@@ -84,24 +86,25 @@ Giai đoạn 2 người: Teacher ≈ ContentAdmin; CenterAdmin có thể gộp T
 ## 4. Quan hệ then chốt (chữ, không ERD formal)
 
 - 1 Subject có nhiều Topic.  
-- 1 Question thuộc 1 Subject, gắn ≥1 Topic, 1 CognitiveLevel (hoặc per-item), 1 ItemFormat.  
-- 1 Stimulus có nhiều Question.  
-- 1 Blueprint có nhiều BlueprintCell.  
-- 1 Blueprint sinh ra nhiều ExamVersion.  
-- 1 ExamVersion dùng cho nhiều Attempt.  
-- 1 Attempt có nhiều AttemptAnswer → chấm ra AttemptScore.
+- 1 Question/Group thuộc 1 Subject; **mỗi QuestionItem** gắn ≥1 Topic + **1 CognitiveLevel bắt buộc**.  
+- 1 Stimulus (bối cảnh) gắn nhiều item/group — stimulus **không** thay thế mức độ của ý.  
+- 1 Blueprint có nhiều BlueprintCell; granularity COARSE|FINE.  
+- 1 Blueprint sinh ra nhiều ExamVersion (kèm ExamSpec).  
+- 1 ExamVersion (locked) dùng cho nhiều Attempt.  
+- 1 Attempt có nhiều AttemptAnswer **theo item** → chấm (Đ/S cộng điểm theo group policy).
 
 ---
 
 ## 5. Luồng nghiệp vụ chính
 
-### Luồng A — Giáo viên dựng bank & ma trận
+### Luồng A — Giáo viên dựng bank & ma trận → đặc tả
 
-1. Tạo/import câu hỏi + gắn metadata.  
+1. Tạo/import câu hỏi; Đ/S gắn **mức từng ý**.  
 2. ContentAdmin duyệt (nếu bank chung).  
-3. Tạo Blueprint từ template hoặc bảng trống.  
-4. Hệ thống báo tồn kho theo ô.  
-5. Sinh ExamVersion → preview → xuất bản.
+3. Tạo Blueprint (template / tự do) + chọn COARSE hoặc FINE.  
+4. Hệ thống báo tồn kho theo ô (ý với Đ/S).  
+5. Sinh ExamVersion **DRAFT** + **Đặc tả DRAFT**.  
+6. GV chỉnh câu/thứ tự/YCCĐ → Validate → **LOCK** → xuất bản.
 
 ### Luồng B — Học sinh thi thử “chuẩn Bộ”
 

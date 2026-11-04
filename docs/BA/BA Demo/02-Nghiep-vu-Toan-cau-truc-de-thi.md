@@ -186,14 +186,20 @@ User “bốc câu” = chọn template hoặc tự tạo ma trận → hệ th�
 
 - Công thức: **LaTeX** gần như bắt buộc.  
 - Hình vẽ (HHKG, đồ thị): ảnh hoặc SVG; câu có thể phụ thuộc hình chung (stimulus).  
-- Phần III: chuẩn hóa đáp án số (dấu phẩy/thập phân VN, làm tròn).  
-- Câu Đ/S: 4 ý **cùng ngữ cảnh** (đoạn mở đầu chung) — giống split-pane demo Bộ với ngữ liệu bên trái.
+- Phần III: quy ước làm tròn **ghi trong stem**; chấm **khớp đúng** key (xem [09](./09-Dac-ta-de-va-quy-tac-da-chot.md)).  
+- Câu Đ/S: stimulus chung chỉ là bối cảnh; **mức độ gắn từng ý** (xem [09](./09-Dac-ta-de-va-quy-tac-da-chot.md) §5).
 
 ---
 
-## 8. Việc giáo viên partner cần xác nhận
+## 8. Quyết định đã chốt (2026-11-04) — không còn “chờ xác nhận”
 
-1. Danh mục **chủ đề / dạng bài** lớp 10–12 dùng trong năm đầu (đủ seed ~30–80 mục, đừng quá mịn).  
-2. Có dùng nhãn **Vận dụng cao** riêng hay gộp **Vận dụng**?  
-3. Quy tắc chấp nhận đáp án Phần III (sai số? đáp án tương đương?).  
-4. Đề thi thử “chuẩn Bộ” có cần khớp sát tỷ lệ chủ đề từng năm hay chỉ khớp 3 phần + mức?
+Chi tiết đầy đủ: **[09-Dac-ta-de-va-quy-tac-da-chot.md](./09-Dac-ta-de-va-quy-tac-da-chot.md)** · danh mục seed: **[10-Danh-muc-chu-de-Toan-seed.md](./10-Danh-muc-chu-de-Toan-seed.md)**.
+
+| # | Câu hỏi cũ | Quyết định |
+|---|------------|------------|
+| 1 | Danh mục chủ đề? | Seed L1/L2 theo đề & ôn các năm (file 10); GV được chỉnh trước production |
+| 2 | VDC riêng hay gộp? | **Lưu 4 mức** (có VDC). Báo cáo 3 mức Bộ: **VDC gộp vào VD** |
+| 3 | Short answer sai số? | Quy ước làm tròn **trong câu hỏi**; chỉ **so khớp đúng** mới cho điểm (nghiêm như thi ĐH/TN) |
+| 4 | Ma trận sát tỷ lệ năm? | **User chọn**: mode COARSE (phần + chủ đề + mức) hoặc FINE (chi tiết dạng bài) |
+| — | Đ/S mức theo group? | **Chuẩn theo từng ý**; group/stimulus chỉ là bối cảnh |
+| — | Đặc tả đề? | **MVP bắt buộc**: sau bốc → đặc tả draft → GV chỉnh → khóa mới xuất bản |
