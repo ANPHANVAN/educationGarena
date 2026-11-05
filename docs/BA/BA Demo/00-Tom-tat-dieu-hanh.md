@@ -40,6 +40,6 @@ Import đề: form + template text trước; AI bằng **API key user** sau.
 ## Việc team cần làm tiếp
 
 1. GV review **09** (đã chốt) + tinh chỉnh taxonomy **10**.  
-2. Chốt segment MVP: chỉ ôn TN 12 hay cả kiểm tra định kỳ.  
+2. Segment đã chốt: **10–11–12**; ownership layer động; đề khóa = 1 link chung cho cả lớp.  
 3. Seed ~50 câu mẫu (Đ/S: 1 mức/câu + 4 ý) → code P0 theo **06** (có đặc tả).  
 4. Bản thống nhất → `docs/BA/BA chốt/`.

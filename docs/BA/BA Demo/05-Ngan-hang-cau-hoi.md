@@ -24,6 +24,9 @@ Ngân hàng tốt = ma trận mới có cái để bốc. Với team nhỏ, **qu
 | cognitive_level | ✓ | NB/TH/VD/VDC — **trên câu** (Đ/S: 1 mức cho cả group). Báo cáo 3 mức: VDC→VD |
 | item_format | ✓ | |
 | status | ✓ | draft / in_review / approved / rejected / archived |
+| ownership_layer | ✓ | personal / center / system / secret / … (bảng động) |
+| created_by | ✓ | Nguồn gốc tác giả — luôn lưu để tham chiếu |
+| organization_id | optional | Nếu thuộc trung tâm |
 | stem (nội dung) | ✓ | Text + LaTeX |
 | answer key | ✓ | Theo format |
 | default_score | optional | Thường lấy từ blueprint cell |
@@ -96,15 +99,16 @@ draft → in_review → approved ⇄ archived
                  ↘ rejected → draft
 ```
 
-| Status | Được vào đề thi chính thức? | Luyện tập? |
-|--------|-----------------------------|------------|
-| draft | Không | Không (trừ author preview) |
-| in_review | Không | Không |
-| approved | Có | Có |
-| rejected | Không | Không |
-| archived | Không (giữ lịch sử đề cũ qua snapshot) | Không |
+| Status | Bank personal/center (đề của GV) | Bank **system** |
+|--------|----------------------------------|------------------|
+| draft | Author dùng / preview | Không |
+| in_review | — | Chờ ContentAdmin duyệt stem + đáp án |
+| approved | Dùng được | Vào kho chung hệ thống |
+| rejected | Sửa lại | Không vào system |
+| archived | Không bốc đề mới | Giữ qua snapshot đề cũ |
 
-Checklist duyệt (giáo viên): đúng đáp án, LaTeX render, mức độ gắn đúng, không trùng stem, hình rõ.
+Checklist duyệt (người duyệt hệ thống): đúng đáp án, LaTeX render, mức độ/topic đúng, không trùng stem, hình rõ.  
+Câu personal **không bắt buộc** duyệt hệ thống để GV tự tạo đề; chỉ câu muốn vào kho chung mới bắt buộc duyệt.
 
 ---
 

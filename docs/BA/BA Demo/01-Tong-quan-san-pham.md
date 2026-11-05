@@ -53,25 +53,81 @@ Sản phẩm phục vụ:
 
 ## 4. Định dạng đề mục tiêu (giai đoạn 1)
 
-Ưu tiên **đề trắc nghiệm theo cấu trúc tốt nghiệp THPT từ 2025** (Toán: 3 dạng thức), vì:
+**Phạm vi lớp (đã chốt):** phục vụ **cả lớp 10, 11, 12** (ôn TN + kiểm tra / luyện theo chương trình), không chỉ lớp 12.
 
-- Chuẩn quốc gia, học sinh lớp 12 (và ôn sớm lớp 10–11) có nhu cầu rõ.  
+Ưu tiên kỹ thuật giai đoạn 1 vẫn là **đề trắc nghiệm theo cấu trúc tốt nghiệp THPT từ 2025** (Toán: 3 dạng thức), vì:
+
+- Chuẩn quốc gia; lớp 10–11 cũng ôn sớm / làm quen format.  
 - Chấm máy được → phù hợp team nhỏ.  
 - Demo Bộ cũng là CBT trắc nghiệm.
 
-Thi vào 10 (tự luận) và kiểm tra định kỳ nhà trường (trộn TN + TL) là **mở rộng schema**, không phải MVP đầu.
+Thi vào 10 (tự luận thuần) là **mở rộng schema** (P2); kiểm tra định kỳ nhà trường dùng lại ma trận + 3 dạng thức + (sau) tự luận.
 
-## 5. Mô hình kiếm tiền (sơ bộ — chưa chốt giá)
+## 5. Mô hình kiếm tiền (sơ bộ)
 
 1. Gói học sinh (tháng / kỳ / năm), có trial.  
 2. Gói giáo viên / trung tâm (ngân hàng riêng, số học sinh, số kỳ thi).  
 3. (Sau) White-label / nhượng quyền môn.
 
+**Thời gian đầu (đã chốt):** bank còn nhỏ, user ít → **mở toàn bộ luyện/thi thử cho chất lượng trải nghiệm**, chưa siết paywall / giới hạn kho. Paywall bật sau khi có đủ nội dung + traffic.
+
 Chi phí AI: **API key của user** khi cần parse đề — tránh burn vốn startup vào LLM.
 
-## 6. Câu hỏi còn mở (cần giáo viên + founder chốt)
+## 6. Quyết định đã chốt (2026-11-05)
 
-- [ ] Segment đầu tiên: chỉ lớp 12 ôn TN THPT, hay cả 10–11 kiểm tra định kỳ?  
-- [ ] Ai sở hữu câu hỏi: chỉ team + giáo viên partner, hay cho GV upload riêng (tenant)?  
-- [ ] Luyện tập free một phần hay toàn bộ sau paywall?  
-- [ ] Có bán “đề đóng gói” (fixed exam) ngoài sinh ngẫu nhiên từ ma trận không?
+### 6.1. Segment
+
+- [x] **Cả lớp 10, 11, 12.**
+
+### 6.2. Ngân hàng câu hỏi & phê duyệt
+
+| Loại nội dung | Ai tạo | Vào đâu | Duyệt? |
+|---------------|--------|---------|--------|
+| Câu của GV / cá nhân | Giáo viên | Bank **cá nhân** (và/hoặc trung tâm nếu thuộc org) | Tự chịu trách nhiệm; dùng cho đề của họ |
+| Câu đóng góp hệ thống | GV / editor | Chờ duyệt → **bank hệ thống** | **Bắt buộc** ContentAdmin / người duyệt: đúng đề + đáp án |
+| Đề do GV tạo | Giáo viên | Đề riêng của người đó (ma trận → ExamVersion) | Không cần duyệt hệ thống để dùng nội bộ |
+
+Mỗi câu **lưu nguồn gốc** (`created_by`, thời điểm, org nếu có) để tham chiếu / audit — kể cả sau khi đã vào bank chung.
+
+### 6.3. Lớp sở hữu (ownership) — bảng động
+
+Không hard-code 2–3 enum cố định. Dùng **bảng / danh mục layer sở hữu** có thể thêm mới, ví dụ seed:
+
+| code (ví dụ) | Ý nghĩa |
+|--------------|---------|
+| `personal` | Chỉ chủ sở hữu (GV) |
+| `center` | Trong phạm vi trung tâm / org |
+| `system` | Bank / đề công khai trên nền tảng (sau duyệt) |
+| `secret` | Đề mật / chưa công bố (thi thật trung tâm) |
+| … | Thêm sau: `licensed`, `partner_pack`, … |
+
+Gắn layer vào **câu hỏi** và/hoặc **đề (ExamVersion)** + rule ai được xem/dùng/thi. Chi tiết schema: cập nhật ở file 04/05 khi implement.
+
+### 6.4. Free vs paywall
+
+- [x] Đầu kỳ: **cho dùng rộng** (không giới hạn kho vì chưa có gì để giới hạn).  
+- Paywall / gói bán: chốt sau khi bank đủ lớn.
+
+### 6.5. “Đề đóng gói” là gì — và thi công bằng thế nào?
+
+Hai khái niệm **không loại trừ nhau**:
+
+| Khái niệm | Nghĩa trong BA | Học sinh thi thế nào |
+|-----------|----------------|----------------------|
+| **Sinh từ ma trận** | Random **một lần** theo ô ma trận → ra **một** `ExamVersion` (danh sách câu đã khóa) | Cả lớp / cả đợt mở **cùng link / cùng ExamVersion** → **cùng một đề** → công bằng |
+| **Đề đóng gói (Fixed Exam)** | Đề đã cố định sẵn: GV soạn tay chọn từng câu, hoặc đề bán/đóng gói sẵn, hoặc bản đã sinh từ ma trận rồi **lưu lại** như sản phẩm | Cũng là một `ExamVersion` cố định + link |
+
+**Trả lời đúng lo của bạn:** sinh ngẫu nhiên **không** có nghĩa mỗi học sinh một đề khác.  
+Flow đúng:
+
+```
+Ma trận → Bốc 1 lần → Đặc tả/chỉnh → Khóa ExamVersion → Tạo link/đợt thi
+→ Nhiều học sinh vào cùng ExamVersion (cùng đề)
+```
+
+Chỉ khi GV **cố ý** sinh thêm mã đề 2, 3… (nhiều ExamVersion từ cùng ma trận) thì mới có đề khác nhau — phục vụ chống quay cóp, không phải mặc định.
+
+**Đề đóng gói** trong câu hỏi mở trước đây = có hỗ trợ thêm kênh “chọn/cố định câu sẵn / bán gói đề”, ngoài nút “sinh từ ma trận”. Cả hai đều kết thúc ở **ExamVersion + link dùng chung**.
+
+- [x] Có hỗ trợ đề cố định / đóng gói (Fixed Exam).  
+- [x] Đề sinh ma trận sau khi khóa = cũng là đề cố định để chia sẻ link thi chung.

@@ -54,7 +54,8 @@ Giai đoạn 2 người: Teacher ≈ ContentAdmin; CenterAdmin có thể gộp T
 - **Choice** — phương án A/B/C/D hoặc Đ/S  
 - **Solution** — lời giải (ẩn theo gói)  
 - **QuestionTag** — tag phụ (dạng “cực trị”, “thực tế kinh tế”…)  
-- **QuestionOwnership** — bank chung / bank tenant trung tâm  
+- **OwnershipLayer** — bảng động (`personal` / `center` / `system` / `secret` / …) gắn câu & đề  
+- **Question.created_by** (+ org) — nguồn gốc bắt buộc để audit  
 
 ### 3.3. Ma trận, đặc tả & đề
 
@@ -135,13 +136,13 @@ Giai đoạn 2 người: Teacher ≈ ContentAdmin; CenterAdmin có thể gộp T
 
 ---
 
-## 7. Multi-tenant (nhẹ, để mở bán trung tâm)
+## 7. Ownership & phạm vi nhìn thấy (đã chốt hướng)
 
-- Mỗi Organization có bank riêng + (optional) được dùng bank chung platform.  
-- Blueprint/Exam của org A không lộ sang org B.  
-- Học sinh thuộc org hoặc mua gói B2C độc lập.
-
-MVP có thể **single tenant** (chỉ bank của team) nhưng schema để `organization_id` nullable từ đầu — tránh rewrite.
+- Layer sở hữu là **danh mục động** (xem `01` §6.3), không hard-code vĩnh viễn.  
+- Seed tối thiểu: `personal`, `center`, `system`, `secret`.  
+- Câu vào **system** bắt buộc qua duyệt (đúng stem + đáp án).  
+- GV luôn tạo được đề / câu **personal** (và `center` nếu thuộc org) để dùng nội bộ.  
+- `organization_id` nullable từ đầu; đề/câu `secret` chỉ user được cấp quyền trong đợt thi.
 
 ---
 

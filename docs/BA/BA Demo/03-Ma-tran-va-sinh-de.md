@@ -182,10 +182,12 @@ score = sum(MCQ correct)*0.25
 
 | Loại | Khi nào dùng | Lưu gì |
 |------|--------------|--------|
-| Fixed Exam | Đề thi thử đóng gói, đề giáo viên soạn tay | Danh sách câu cố định |
-| Matrix-generated | Thi trung tâm nhiều ca, luyện không trùng | Blueprint + seed random + ExamVersion |
+| Fixed / đóng gói | GV chọn tay từng câu; hoặc bán gói đề sẵn; hoặc tái dùng đề đã khóa | Danh sách câu cố định → ExamVersion |
+| Matrix-generated | Bốc theo ma trận (random **một lần** lúc sinh) | Blueprint + kết quả bốc → ExamVersion |
 
-Cả hai đều cần **ExamVersion** cuối cùng để thí sinh làm. Matrix chỉ là cách tạo Version.
+**Quan trọng (công bằng):** sau khi khóa, học sinh trong một đợt thi mở **cùng link / cùng ExamVersion** — cùng một đề. Không random lại theo từng thí sinh. Muốn nhiều mã đề thì sinh thêm nhiều ExamVersion có chủ đích.
+
+Chi tiết đã chốt: [`01` §6.5](./01-Tong-quan-san-pham.md).
 
 ---
 

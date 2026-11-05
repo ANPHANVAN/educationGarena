@@ -45,7 +45,7 @@ Một học sinh có thể:
 | Xem lại bài + lời giải | |
 | Báo cáo đơn giản cho GV (điểm lớp) | |
 | Import text template hàng loạt | |
-| Gói trial / paywall thô | Có thể manual kích hoạt lúc đầu |
+| Gói trial / paywall thô | Đầu kỳ mở rộng; siết sau khi bank đủ |
 | Tab blur warning (log) | Đủ “có chống gian lận nhẹ”; không ML |
 
 ### P2 — khi có user thật
