@@ -10,9 +10,9 @@ Tài liệu này trả lời: *Biết cấu trúc các môn rồi thì BA/dev ph
 
 | Lớp | Ví dụ |
 |-----|--------|
-| `ItemFormat` | MCQ_SINGLE, TRUE_FALSE_GROUP, SHORT_ANSWER, ESSAY, (ORDERING…) |
-| `ScorePolicy` | `tn_thpt_toan_2025`, `tn_thpt_ly_2025`, `tn_thpt_anh_2025`, `school_mix_70_30` |
-| `BlueprintTemplate` | Số câu từng phần + filter + track (Tin) |
+| [`ItemFormat`](../11-Chu-thich.md#dang-thuc) | [MCQ_SINGLE](../11-Chu-thich.md#mcq), [TRUE_FALSE_GROUP](../11-Chu-thich.md#dung-sai), [SHORT_ANSWER](../11-Chu-thich.md#tra-loi-ngan), ESSAY, (ORDERING…) |
+| [`ScorePolicy`](../11-Chu-thich.md#score-policy) | `tn_thpt_toan_2025`, `tn_thpt_ly_2025`, `tn_thpt_anh_2025`, `school_mix_70_30` |
+| [`BlueprintTemplate`](../11-Chu-thich.md#blueprint-template) | Số câu từng phần + filter + track (Tin) |
 | `SubjectContentPack` | Topic tree + media rules + short-answer normalizer |
 
 Mọi môn TN 2025 chỉ là **cấu hình** trên cùng mô hình đã mô tả cho Toán.
@@ -27,7 +27,7 @@ Mọi môn TN 2025 chỉ là **cấu hình** trên cùng mô hình đã mô tả
 | Đ/S group 4 ý | ✓ | ✓ | ✓ | ✓ | — | — |
 | Short answer | ✓ | ✓ | — | — | — | — |
 | Essay / viết dài | — | (định kỳ) | (định kỳ) | — | (định kỳ) | ✓ TN |
-| Stimulus dùng chung | hữu ích | **rất cần** | **rất cần** | cần | **bắt buộc** | **bắt buộc** |
+| [Stimulus](../11-Chu-thich.md#stimulus) dùng chung | hữu ích | **rất cần** | **rất cần** | cần | **bắt buộc** | **bắt buộc** |
 | Track / nhánh đề | — | — | — | **có** | — | — |
 | LaTeX | ✓ | ✓ | ít | ít | — | — |
 | Code block | — | — | — | ✓ | — | — |
@@ -37,7 +37,7 @@ Mọi môn TN 2025 chỉ là **cấu hình** trên cùng mô hình đã mô tả
 
 ---
 
-## 3. Ma trận vẫn là ngôn ngữ chung của ngành
+## 3. [Ma trận](../11-Chu-thich.md#ma-tran) vẫn là ngôn ngữ chung của ngành
 
 Dù môn gì, giáo viên vẫn nghĩ:
 

@@ -5,23 +5,23 @@
 | Lớp | Kỳ / loại đề | Ai ra đề | Hình thức phổ biến | Liên quan sản phẩm |
 |-----|--------------|----------|--------------------|--------------------|
 | 9→10 | Tuyển sinh lớp 10 | **Sở** GDĐT | Văn/Toán/Ngoại ngữ; Toán–Văn thường **tự luận** (tùy tỉnh) | P2+; khác chuẩn quốc gia |
-| 10–12 | Kiểm tra giữa kỳ / cuối kỳ | **Trường / tổ CM** | Ma trận + đặc tả; TN + TL theo tỷ lệ Bộ/Sở gợi ý | Nhu cầu GV/trung tâm hàng ngày |
-| 12 | **Tốt nghiệp THPT** | **Bộ** (Cục QLCL) | Văn tự luận; còn lại trắc nghiệm theo QĐ 764 | Neo chuẩn CBT / thi thử |
+| 10–12 | Kiểm tra giữa kỳ / cuối kỳ | **Trường / tổ CM** | [Ma trận](../11-Chu-thich.md#ma-tran) + [đặc tả](../11-Chu-thich.md#dac-ta-de); TN + TL theo tỷ lệ Bộ/Sở gợi ý | Nhu cầu GV/trung tâm hàng ngày |
+| 12 | **Tốt nghiệp THPT** | **Bộ** (Cục QLCL) | Văn tự luận; còn lại trắc nghiệm theo QĐ 764 | Neo chuẩn [CBT](../11-Chu-thich.md#cbt) / thi thử |
 | Ngoài | ĐGNL, ĐGTD, IELTS… | ĐHQG / tổ chức khác | Format riêng | Không nằm core năm đầu |
 
 **Nguyên tắc hình dung ngành:** cùng một môn Toán/Lý/Anh… có thể có **3–4 cấu trúc đề khác nhau** tùy kỳ. Platform sống được nhờ **template ma trận theo kỳ**, không nhờ một format cứng.
 
 ---
 
-## 2. Ba dạng thức trắc nghiệm quốc gia (từ 2025)
+## 2. Ba [dạng thức](../11-Chu-thich.md#dang-thuc) trắc nghiệm quốc gia (từ 2025)
 
 Áp dụng cho hầu hết môn TN (trừ Văn; Ngoại ngữ chỉ dùng dạng 1):
 
 | Dạng thức | Tên thường gọi | Thí sinh làm gì | Vì sao Bộ đưa vào |
 |-----------|----------------|-----------------|-------------------|
-| **1** | Nhiều lựa chọn (MCQ) | Chọn 1/4 phương án A–D | Quen thuộc, chấm máy |
-| **2** | Đúng / Sai | Mỗi câu 4 ý; mỗi ý Đ hoặc S | Khó “mẹo”; P(đúng cả 4) = 1/16 |
-| **3** | Trả lời ngắn | Điền/tô kết quả (số, từ ngắn…) | Gần tự luận nhưng vẫn chấm máy |
+| **1** | Nhiều lựa chọn ([MCQ](../11-Chu-thich.md#mcq)) | Chọn 1/4 phương án A–D | Quen thuộc, chấm máy |
+| **2** | [Đúng / Sai](../11-Chu-thich.md#dung-sai) | Mỗi câu 4 ý; mỗi ý Đ hoặc S | Khó “mẹo”; P(đúng cả 4) = 1/16 |
+| **3** | [Trả lời ngắn](../11-Chu-thich.md#tra-loi-ngan) | Điền/tô kết quả (số, từ ngắn…) | Gần tự luận nhưng vẫn chấm máy |
 
 **Cách chấm chung (trắc nghiệm):**
 

@@ -6,7 +6,7 @@ Nguồn khung: **QĐ 764/QĐ-BGDĐT ngày 08/03/2024**. Kỳ thi: 2 môn bắt b
 
 ## 1. Bảng tổng hợp
 
-| Môn | Thời gian | Phần I (MCQ) | Phần II (Đ/S) | Phần III (Short) | Tổng “câu”* | Họ cấu trúc |
+| Môn | Thời gian | Phần I ([MCQ](../11-Chu-thich.md#mcq)) | Phần II ([Đ/S](../11-Chu-thich.md#dung-sai)) | Phần III ([Short](../11-Chu-thich.md#tra-loi-ngan)) | Tổng “câu”* | Họ cấu trúc |
 |-----|-----------|--------------|--------------|------------------|-------------|-------------|
 | **Toán** | 90' | 12 | 4 | 6 | 22 | 3 phần |
 | **Vật lí** | 50' | 18 | 4 | 6 | 28 | 3 phần |

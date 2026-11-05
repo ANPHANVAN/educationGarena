@@ -1,15 +1,15 @@
 # 05 — Quản lý ngân hàng câu hỏi
 
-Ngân hàng tốt = ma trận mới có cái để bốc. Với team nhỏ, **quy trình nội dung** quan trọng không kém schema.
+[Ngân hàng](./11-Chu-thich.md#ngan-hang-cau-hoi) tốt = [ma trận](./11-Chu-thich.md#ma-tran) mới có cái để [bốc](./11-Chu-thich.md#sinh-de). Với team nhỏ, **quy trình nội dung** quan trọng không kém schema.
 
 ---
 
 ## 1. Nguyên tắc thiết kế
 
 1. **Câu hỏi không tồn tại nếu thiếu metadata bắt buộc** (chặn publish).  
-2. **Tách nội dung hiển thị** (stem, choices, media) khỏi **metadata phân loại** (topic, level, format).  
+2. **Tách nội dung hiển thị** ([stem](./11-Chu-thich.md#stem), choices, media) khỏi **metadata phân loại** (topic, level, format).  
 3. **Một lần duyệt** trước khi vào đề thi có tính “chính thức”.  
-4. **Snapshot khi vào ExamVersion** — sửa bank không làm đổi đề đã thi.  
+4. **[Snapshot](./11-Chu-thich.md#snapshot) khi vào [ExamVersion](./11-Chu-thich.md#exam-version)** — sửa bank không làm đổi đề đã thi.  
 5. Schema **agnostic môn** — Toán chỉ là bộ Topic + Format config.
 
 ---
@@ -20,18 +20,18 @@ Ngân hàng tốt = ma trận mới có cái để bốc. Với team nhỏ, **qu
 |--------|----------|---------|
 | subject_id | ✓ | |
 | grade_levels[] | ✓ | Một câu có thể ôn cho nhiều lớp (vd. hàm số 11–12) |
-| topic_ids[] | ✓ ≥1 | Chủ đề chính; phụ để tag |
-| cognitive_level | ✓ | NB/TH/VD/VDC — **trên câu** (Đ/S: 1 mức cho cả group). Báo cáo 3 mức: VDC→VD |
-| item_format | ✓ | |
+| topic_ids[] | ✓ ≥1 | [Chủ đề](./11-Chu-thich.md#chu-de) chính; phụ để tag |
+| [cognitive_level](./11-Chu-thich.md#cap-do-tu-duy) | ✓ | [NB](./11-Chu-thich.md#nb)/[TH](./11-Chu-thich.md#th)/[VD](./11-Chu-thich.md#vd)/[VDC](./11-Chu-thich.md#vdc) — **trên câu** (Đ/S: 1 mức cho cả group). Báo cáo 3 mức: VDC→VD |
+| [item_format](./11-Chu-thich.md#dang-thuc) | ✓ | |
 | status | ✓ | draft / in_review / approved / rejected / archived |
-| ownership_layer | ✓ | personal / center / system / secret / … (bảng động) |
+| [ownership_layer](./11-Chu-thich.md#ownership-layer) | ✓ | personal / center / system / secret / … (bảng động) |
 | created_by | ✓ | Nguồn gốc tác giả — luôn lưu để tham chiếu |
 | organization_id | optional | Nếu thuộc trung tâm |
 | stem (nội dung) | ✓ | Text + LaTeX |
 | answer key | ✓ | Theo format |
-| default_score | optional | Thường lấy từ blueprint cell |
+| default_score | optional | Thường lấy từ [blueprint cell](./11-Chu-thich.md#o-ma-tran) |
 | estimated_time_sec | optional | |
-| competency | optional | |
+| [competency](./11-Chu-thich.md#nang-luc) | optional | |
 | difficulty_manual | optional | 1–5 nếu muốn ngoài 4 mức CĐT |
 | language | ✓ | vi |
 
@@ -39,7 +39,7 @@ Ngân hàng tốt = ma trận mới có cái để bốc. Với team nhỏ, **qu
 
 ## 3. Mô hình theo từng dạng thức
 
-### 3.1. MCQ một đáp án đúng
+### 3.1. [MCQ](./11-Chu-thich.md#mcq) một đáp án đúng
 
 ```
 Question
@@ -51,7 +51,7 @@ Question
 Ràng buộc: đúng đúng 1 choice.  
 (Đa đáp án đúng để sau — ít dùng trong đề TN Toán hiện tại.)
 
-### 3.2. Đúng / Sai (group) — mức theo cả câu (đã chốt lại)
+### 3.2. [Đúng / Sai](./11-Chu-thich.md#dung-sai) (group) — mức theo cả câu (đã chốt lại)
 
 ```
 Question (format=TRUE_FALSE_GROUP)
@@ -66,9 +66,9 @@ Question (format=TRUE_FALSE_GROUP)
 
 UI thí sinh: 4 ý, mỗi ý Đ/S.  
 Chấm điểm theo số ý đúng trong câu (policy TN: 0,1/0,25/0,5/1).  
-Ma trận / tồn kho / đặc tả / bốc câu: theo **câu** (giống MCQ).
+Ma trận / [tồn kho](./11-Chu-thich.md#ton-kho) / [đặc tả](./11-Chu-thich.md#dac-ta-de) / bốc câu: theo **câu** (giống MCQ).
 
-### 3.3. Trả lời ngắn — chấm nghiêm (đã chốt)
+### 3.3. [Trả lời ngắn](./11-Chu-thich.md#tra-loi-ngan) — chấm nghiêm (đã chốt)
 
 ```
 Question
@@ -79,14 +79,14 @@ Question
   // KHÔNG dùng tolerance trong mode thi
 ```
 
-**Chấm:** normalize (trim, dấu thập phân) rồi **exact match** với key. Sai khác biệt làm tròn → 0 điểm.  
+**Chấm:** normalize (trim, dấu thập phân) rồi **[exact match](./11-Chu-thich.md#exact-match)** với key. Sai khác biệt làm tròn → 0 điểm.  
 Giống kỷ luật đáp án thi ĐH/TN: đề đã nói cách làm tròn thì chỉ đáp án đúng quy ước mới được tính.
 
 ### 3.4. Tự luận (P2)
 
-Chỉ lưu stem + rubric + điểm tối đa; chấm tay. Không nằm MVP CBT auto-grade.
+Chỉ lưu stem + rubric + điểm tối đa; chấm tay. Không nằm MVP [CBT](./11-Chu-thich.md#cbt) auto-grade.
 
-### 3.5. Stimulus dùng chung
+### 3.5. [Stimulus](./11-Chu-thich.md#stimulus) dùng chung
 
 Một hình / bảng / đoạn cho nhiều câu (Passages kiểu demo Bộ môn đọc hiểu; Toán: bài thực tế nhiều ý).
 
@@ -102,7 +102,7 @@ draft → in_review → approved ⇄ archived
 | Status | Bank personal/center (đề của GV) | Bank **system** |
 |--------|----------------------------------|------------------|
 | draft | Author dùng / preview | Không |
-| in_review | — | Chờ ContentAdmin duyệt stem + đáp án |
+| in_review | — | Chờ [ContentAdmin](./11-Chu-thich.md#content-admin) duyệt stem + đáp án |
 | approved | Dùng được | Vào kho chung hệ thống |
 | rejected | Sửa lại | Không vào system |
 | archived | Không bốc đề mới | Giữ qua snapshot đề cũ |

@@ -7,11 +7,11 @@ Câu hỏi: *“Làm Toán trước, sau có mở Lý/Hóa/Anh được không?�
 
 ## 1. Phần dùng chung mọi môn (platform)
 
-- User, org, thanh toán, kỳ thi, attempt, timer, palette UI shell  
-- Blueprint engine (ô filter + count + sinh đề + shortage report)  
+- User, org, thanh toán, kỳ thi, [attempt](./11-Chu-thich.md#attempt), timer, palette UI shell  
+- [Blueprint](./11-Chu-thich.md#ma-tran) engine ([ô](./11-Chu-thich.md#o-ma-tran) filter + count + [sinh đề](./11-Chu-thich.md#sinh-de) + shortage report)  
 - Vòng đời câu hỏi (draft → approved)  
-- Score policy **cấu hình được** (không hard-code 0,25 / 0,5)  
-- CBT layout: 1 cột / 2 cột (stimulus | questions)
+- [Score policy](./11-Chu-thich.md#score-policy) **cấu hình được** (không hard-code 0,25 / 0,5)  
+- [CBT](./11-Chu-thich.md#cbt) layout: 1 cột / 2 cột ([stimulus](./11-Chu-thich.md#stimulus) | questions)
 
 Đây là thứ team xây một lần.
 
@@ -19,12 +19,12 @@ Câu hỏi: *“Làm Toán trước, sau có mở Lý/Hóa/Anh được không?�
 
 ## 2. Phần riêng từng môn (content pack)
 
-Mỗi môn = pack cấu hình + bank:
+Mỗi môn = pack cấu hình + [bank](./11-Chu-thich.md#ngan-hang-cau-hoi):
 
 | Thành phần | Toán | Lý / Hóa | Tiếng Anh |
 |------------|------|----------|-----------|
 | Topic tree | Chuyên đề ĐS–HH–XS | Chuyên đề chương | Skill + theme |
-| Item formats dùng | MCQ, Đ/S, Short | Tương tự TN THPT | Chủ yếu MCQ (+ điền từ sau) |
+| [Item formats](./11-Chu-thich.md#dang-thuc) dùng | [MCQ](./11-Chu-thich.md#mcq), [Đ/S](./11-Chu-thich.md#dung-sai), [Short](./11-Chu-thich.md#tra-loi-ngan) | Tương tự TN THPT | Chủ yếu MCQ (+ điền từ sau) |
 | Score policies | Template TN Toán | Template môn đó | 40 câu × điểm/câu |
 | Render đặc thù | LaTeX nặng, hình HH | Công thức + hình thí nghiệm | Audio (sau) |
 | Short answer rules | Số / làm tròn | Số + đơn vị? | Từ vựng |
@@ -37,7 +37,7 @@ Mỗi môn = pack cấu hình + bank:
 
 1. `subject_id` trên mọi Question, Blueprint, Exam.  
 2. `ItemFormat` và `ScorePolicy` là dữ liệu/config, không `if (math) return 0.5`.  
-3. Topic là bảng dữ liệu, không enum hard-code trong source.  
+3. [Topic](./11-Chu-thich.md#chu-de) là bảng dữ liệu, không enum hard-code trong source.  
 4. TRUE_FALSE_GROUP và SHORT_ANSWER là first-class (Lý/Hóa TN THPT cũng dùng).  
 5. Tránh tên bảng kiểu `math_questions` — dùng `questions`.
 

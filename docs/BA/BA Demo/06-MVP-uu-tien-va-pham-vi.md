@@ -8,15 +8,15 @@ Team: **2 dev (junior–middle) + 1 giáo viên**. Deadline nội bộ từng nh
 
 Một giáo viên có thể:
 
-1. Thêm câu hỏi Toán (MCQ, Đ/S **mức theo câu** + 4 ý cố định, trả lời ngắn) kèm chủ đề + mức độ.  
-2. Tạo ma trận (template TN hoặc bảng chủ đề × mức), chọn COARSE/FINE.  
-3. Sinh đề khi đủ tồn kho; báo thiếu nếu không đủ.  
-4. Xem **đặc tả draft**, đổi câu/chỉnh YCCĐ, **khóa đề** rồi mở kỳ thi / luyện.  
+1. Thêm câu hỏi Toán ([MCQ](./11-Chu-thich.md#mcq), [Đ/S](./11-Chu-thich.md#dung-sai) **mức theo câu** + 4 ý cố định, [trả lời ngắn](./11-Chu-thich.md#tra-loi-ngan)) kèm [chủ đề](./11-Chu-thich.md#chu-de) + [mức độ](./11-Chu-thich.md#cap-do-tu-duy).  
+2. Tạo [ma trận](./11-Chu-thich.md#ma-tran) (template TN hoặc bảng chủ đề × mức), chọn [COARSE](./11-Chu-thich.md#coarse)/[FINE](./11-Chu-thich.md#fine).  
+3. [Sinh đề](./11-Chu-thich.md#sinh-de) khi đủ [tồn kho](./11-Chu-thich.md#ton-kho); báo thiếu nếu không đủ.  
+4. Xem **[đặc tả](./11-Chu-thich.md#dac-ta-de) draft**, đổi câu/chỉnh [YCCĐ](./11-Chu-thich.md#yccd), **[khóa đề](./11-Chu-thich.md#khoa-de)** rồi mở kỳ thi / luyện.  
 
 Một học sinh có thể:
 
-5. Đăng nhập → làm bài CBT tối giản (timer, palette, nộp bài).  
-6. Nhận điểm đúng rule 3 phần; short answer **exact match**.
+5. Đăng nhập → làm bài [CBT](./11-Chu-thich.md#cbt) tối giản (timer, palette, nộp bài).  
+6. Nhận điểm đúng rule 3 phần; short answer **[exact match](./11-Chu-thich.md#exact-match)**.
 
 **Ngoài định nghĩa xong:** ranking, meme, AI PDF, chống gian lận ML, tự luận vào 10, đa môn, thanh toán phức tạp.
 
@@ -30,10 +30,10 @@ Một học sinh có thể:
 |----------|---------|
 | Auth cơ bản (học sinh / giáo viên) | Email + password OK |
 | CRUD câu hỏi 3 format + LaTeX; Đ/S mức theo câu | |
-| Taxonomy seed L1 (+ L2 tối thiểu) | Xem file 10; GV chỉnh |
-| Blueprint COARSE/FINE + sinh đề + tồn kho | Core |
+| [Taxonomy](./11-Chu-thich.md#taxonomy) seed [L1](./11-Chu-thich.md#l1) (+ [L2](./11-Chu-thich.md#l2) tối thiểu) | Xem file 10; GV chỉnh |
+| [Blueprint](./11-Chu-thich.md#ma-tran) COARSE/FINE + sinh đề + tồn kho | Core |
 | **Đặc tả draft → chỉnh → khóa đề** | Core (file 09) |
-| Attempt + chấm MCQ / ĐS group / short exact | |
+| [Attempt](./11-Chu-thich.md#attempt) + chấm MCQ / ĐS group / short exact | |
 | Template `TN_THPT_TOAN_2025` scoring | |
 | UI làm bài tối giản (demo Bộ) | |
 

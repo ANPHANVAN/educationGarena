@@ -9,6 +9,7 @@
 
 | # | File | Nội dung |
 |---|------|----------|
+| 00 | [00-Tom-tat-dieu-hanh.md](./00-Tom-tat-dieu-hanh.md) | Tóm tắt 1 trang |
 | 01 | [01-Tong-quan-san-pham.md](./01-Tong-quan-san-pham.md) | Bài toán kinh doanh, core vs phụ, đối thủ, demo Bộ GD&ĐT |
 | 02 | [02-Nghiep-vu-Toan-cau-truc-de-thi.md](./02-Nghiep-vu-Toan-cau-truc-de-thi.md) | Logic ngành Toán: THPT, kiểm tra 10–12, thi vào 10, cấp độ tư duy |
 | 03 | [03-Ma-tran-va-sinh-de.md](./03-Ma-tran-va-sinh-de.md) | Ma trận đề thi, “bốc câu”, quy tắc sinh đề, scoring |
@@ -19,6 +20,7 @@
 | 08 | [08-Nguon-tham-chieu.md](./08-Nguon-tham-chieu.md) | Nguồn research, ghi chú cập nhật |
 | 09 | [09-Dac-ta-de-va-quy-tac-da-chot.md](./09-Dac-ta-de-va-quy-tac-da-chot.md) | **Đặc tả đề + quyết định đã chốt** (VDC, short, Đ/S mức theo câu, COARSE/FINE) |
 | 10 | [10-Danh-muc-chu-de-Toan-seed.md](./10-Danh-muc-chu-de-Toan-seed.md) | Danh mục chủ đề Toán seed từ đề/ôn các năm |
+| 11 | [11-Chu-thich.md](./11-Chu-thich.md) | **Chú thích thuật ngữ** — một nơi tra cứu; lần đầu mỗi tài liệu nhắc tới thì dẫn link về đây |
 | — | [cau-truc-cau-hoi-bo-mon-khac/](./cau-truc-cau-hoi-bo-mon-khac/00-Muc-luc.md) | Cấu trúc đề & dạng câu **các môn khác** (toàn ngành) |
 
 ## Cách đọc đề xuất
@@ -27,7 +29,8 @@
 2. Đọc **02 + 03** + **09** (đặc tả, VDC, short, Đ/S **mức theo câu**).  
 3. Đọc **10** khi seed taxonomy; **04 + 05** cho model & bank.  
 4. Đọc **06** trước khi code; **07** để không chặn mở rộng.  
-5. Thư mục **cau-truc-cau-hoi-bo-mon-khac/** khi cần toàn ngành.
+5. Thư mục **cau-truc-cau-hoi-bo-mon-khac/** khi cần toàn ngành.  
+6. Gặp thuật ngữ lạ (COARSE, YCCĐ, ExamVersion…) thì mở **[11 — Chú thích](./11-Chu-thich.md)**. Mỗi tài liệu chỉ gắn link ở **lần xuất hiện đầu** của thuật ngữ.
 
 ## Phân biệt thư mục
 

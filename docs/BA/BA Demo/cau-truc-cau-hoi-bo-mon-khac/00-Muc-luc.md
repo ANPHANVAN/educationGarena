@@ -1,7 +1,7 @@
 # Cấu trúc câu hỏi các bộ môn khác — Mục lục
 
 > Mục tiêu: hình dung **toàn ngành** khảo thí phổ thông VN (không chỉ Toán), để thiết kế platform mở rộng được.  
-> Neo chính: **Quyết định 764/QĐ-BGDĐT (08/03/2024)** — cấu trúc đề TN THPT từ 2025 + thực tiễn kiểm tra định kỳ (CV 7991…).  
+> Neo chính: **Quyết định 764/QĐ-BGDĐT (08/03/2024)** — cấu trúc đề TN THPT từ 2025 + thực tiễn kiểm tra định kỳ ([CV 7991](../11-Chu-thich.md#cv-7991)…).  
 > Toán chi tiết xem [`../02-Nghiep-vu-Toan-cau-truc-de-thi.md`](../02-Nghiep-vu-Toan-cau-truc-de-thi.md).
 
 | File | Nội dung |
@@ -14,3 +14,5 @@
 | [06-He-qua-thiet-ke-platform.md](./06-He-qua-thiet-ke-platform.md) | Rút ra cho schema / MVP / mở môn sau |
 
 **Đọc nhanh:** `01` → `02` → `06`. Chi tiết môn khi cần mở rộng: `03`–`05`.
+
+Thuật ngữ nền tảng (ma trận, dạng thức, CBT, …): [11 — Chú thích](../11-Chu-thich.md).

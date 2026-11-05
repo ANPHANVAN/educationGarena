@@ -1,6 +1,6 @@
 # 02 — Nghiệp vụ Toán & cấu trúc đề thi thực tế
 
-Tài liệu này tổng hợp logic ngành Toán phổ thông Việt Nam (CT GDPT 2018) để team dev hiểu **vì sao ma trận đề phải có những trục phân loại nào**. Giáo viên partner cần review lại số liệu/tỷ lệ trước khi “chốt BA”.
+Tài liệu này tổng hợp logic ngành Toán phổ thông Việt Nam (CT GDPT 2018) để team dev hiểu **vì sao [ma trận đề](./11-Chu-thich.md#ma-tran) phải có những trục phân loại nào**. Giáo viên partner cần review lại số liệu/tỷ lệ trước khi “chốt BA”.
 
 ---
 
@@ -8,11 +8,11 @@ Tài liệu này tổng hợp logic ngành Toán phổ thông Việt Nam (CT GDP
 
 | Khái niệm | Tiếng Việt thường gặp | Dùng để làm gì | Ví dụ Toán |
 |-----------|----------------------|----------------|------------|
-| **Đơn vị kiến thức / chủ đề** | chuyên đề, chương, dạng bài | “Bốc câu thuộc phần nào” | Khảo sát hàm số; Tích phân; Oxyz |
-| **Cấp độ tư duy / mức độ** | nhận biết, thông hiểu, vận dụng, (vận dụng cao) | “Khó dễ theo Bloom/VN” | Câu NB vs câu VD |
-| **Dạng thức câu hỏi** | trắc nghiệm 4 lựa chọn, đúng/sai, trả lời ngắn, tự luận | “UI + cách chấm” | Phần I / II / III đề TN THPT |
+| **Đơn vị kiến thức / [chủ đề](./11-Chu-thich.md#chu-de)** | chuyên đề, chương, dạng bài | “Bốc câu thuộc phần nào” | Khảo sát hàm số; Tích phân; Oxyz |
+| **[Cấp độ tư duy](./11-Chu-thich.md#cap-do-tu-duy) / mức độ** | nhận biết, thông hiểu, vận dụng, (vận dụng cao) | “Khó dễ theo Bloom/VN” | Câu NB vs câu VD |
+| **[Dạng thức câu hỏi](./11-Chu-thich.md#dang-thuc)** | trắc nghiệm 4 lựa chọn, đúng/sai, trả lời ngắn, tự luận | “UI + cách chấm” | Phần I / II / III đề TN THPT |
 
-Ngoài ra, CT 2018 còn trục **năng lực toán học** (dùng trong bảng NL–CĐT của Bộ):
+Ngoài ra, CT 2018 còn trục **[năng lực toán học](./11-Chu-thich.md#nang-luc)** (dùng trong bảng NL–CĐT của Bộ):
 
 1. Tư duy và lập luận toán học (TD)  
 2. Giải quyết vấn đề toán học (GQ)  
@@ -29,10 +29,10 @@ Trong kiểm tra định kỳ (giữa kỳ / cuối kỳ), giáo viên quen dùn
 
 | Mã | Tên | Ý nghĩa nghiệp vụ (tóm tắt) | Thường xuất hiện ở |
 |----|-----|----------------------------|--------------------|
-| NB | Nhận biết | Nhớ định nghĩa, công thức, nhận dạng đối tượng | TN nhiều lựa chọn |
-| TH | Thông hiểu | Giải thích, chuyển đổi biểu diễn, tính toán chuẩn | TN, đúng/sai ý dễ |
-| VD | Vận dụng | Áp dụng vào tình huống quen / bài toán có quy trình | Đúng/sai ý khó, trả lời ngắn, tự luận |
-| VDC | Vận dụng cao | Tình huống mới, liên kết nhiều kiến thức, phân hóa điểm cao | Trả lời ngắn khó, tự luận cuối |
+| [NB](./11-Chu-thich.md#nb) | Nhận biết | Nhớ định nghĩa, công thức, nhận dạng đối tượng | TN nhiều lựa chọn |
+| [TH](./11-Chu-thich.md#th) | Thông hiểu | Giải thích, chuyển đổi biểu diễn, tính toán chuẩn | TN, đúng/sai ý dễ |
+| [VD](./11-Chu-thich.md#vd) | Vận dụng | Áp dụng vào tình huống quen / bài toán có quy trình | Đúng/sai ý khó, trả lời ngắn, tự luận |
+| [VDC](./11-Chu-thich.md#vdc) | Vận dụng cao | Tình huống mới, liên kết nhiều kiến thức, phân hóa điểm cao | Trả lời ngắn khó, tự luận cuối |
 
 > **Lưu ý đề TN THPT từ 2025:** bảng chính thức của Bộ thường ghi **3 mức: Biết – Hiểu – Vận dụng** (gộp VDC vào nhóm vận dụng hoặc thể hiện qua độ khó câu Phần III). Trên thị trường ôn thi, giáo viên vẫn hay gọi “vận dụng cao” cho câu phân hóa.  
 > **Hệ thống nên hỗ trợ 4 mức** (NB/TH/VD/VDC); template ma trận “chuẩn Bộ” map VDC ⊂ VD nếu cần báo cáo 3 mức.
@@ -46,20 +46,20 @@ Trong kiểm tra định kỳ (giữa kỳ / cuối kỳ), giáo viên quen dùn
 | Hạng mục | Giá trị |
 |----------|---------|
 | Thời gian | 90 phút |
-| Hình thức | Trắc nghiệm khách quan (giấy hiện tại; CBT là hướng tổ chức sau) |
+| Hình thức | Trắc nghiệm khách quan (giấy hiện tại; [CBT](./11-Chu-thich.md#cbt) là hướng tổ chức sau) |
 | Số câu hỏi | **22 câu** |
 | Số lệnh hỏi (ý) | **34 ý** (vì 4 câu đúng/sai × 4 ý) |
 | Thang điểm | 10 |
 
 ### 3.2. Ba dạng thức (Phần I–II–III)
 
-#### Phần I — Trắc nghiệm nhiều phương án lựa chọn (MCQ)
+#### Phần I — Trắc nghiệm nhiều phương án lựa chọn ([MCQ](./11-Chu-thich.md#mcq))
 
 - **12 câu**, mỗi câu 4 phương án A/B/C/D, chọn 1.  
 - Mức độ điển hình: **Nhận biết – Thông hiểu**.  
 - Điểm: **0,25 / câu đúng** → tối đa **3,0 điểm**.
 
-#### Phần II — Trắc nghiệm Đúng / Sai
+#### Phần II — Trắc nghiệm [Đúng / Sai](./11-Chu-thich.md#dung-sai)
 
 - **4 câu**, mỗi câu **4 ý** (a,b,c,d); mỗi ý chọn Đúng hoặc Sai.  
 - Mức độ điển hình: **Thông hiểu – Vận dụng** (các ý trong cùng câu có thể lệch mức).  
@@ -75,7 +75,7 @@ Trong kiểm tra định kỳ (giữa kỳ / cuối kỳ), giáo viên quen dùn
 → Tối đa Phần II: **4,0 điểm**.  
 → Xác suất đoán đúng cả 4 ý = 1/16 — đúng mục tiêu phân hóa của Bộ.
 
-#### Phần III — Trả lời ngắn (short answer)
+#### Phần III — [Trả lời ngắn](./11-Chu-thich.md#tra-loi-ngan) (short answer)
 
 - **6 câu**; thí sinh điền kết quả (số / biểu thức ngắn theo quy ước đề).  
 - Mức độ điển hình: **Vận dụng (– vận dụng cao)**.  
@@ -108,7 +108,7 @@ Nguồn tổng hợp cộng đồng (MathVN, phân tích đề 2025–2026) — 
 
 ### 3.4. Hệ quả cho phần mềm
 
-1. Một “câu” Phần II là **QuestionGroup** chứa 4 **Item** (ý) — chấm theo rule bảng điểm, không chấm 4 câu độc lập rồi cộng.  
+1. Một “câu” Phần II là **[QuestionGroup](./11-Chu-thich.md#question-item)** chứa 4 **Item** (ý) — chấm theo rule bảng điểm, không chấm 4 câu độc lập rồi cộng.  
 2. Phần III cần schema **đáp án chuẩn hóa** (số thập phân, sai số chấp nhận?, nhiều đáp án tương đương?).  
 3. Ma trận “chuẩn TN THPT Toán” là **template cố định 3 phần** + các ô (chủ đề × mức × dạng thức) quy định số lượng.
 
@@ -120,7 +120,7 @@ Nguồn tổng hợp cộng đồng (MathVN, phân tích đề 2025–2026) — 
 
 - Thời lượng thường 45–90 phút tùy nhà trường.  
 - Có thể **trộn trắc nghiệm + tự luận**.  
-- Bắt buộc có **ma trận + đặc tả đề** theo hướng dẫn tập huấn của ngành (Thông tư đánh giá + tài liệu xây dựng đề theo ma trận).
+- Bắt buộc có **ma trận + [đặc tả đề](./11-Chu-thich.md#dac-ta-de)** theo hướng dẫn tập huấn của ngành (Thông tư đánh giá + tài liệu xây dựng đề theo ma trận).
 
 ### Cấu trúc ma trận nhà trường (mô hình phổ biến)
 
@@ -169,7 +169,7 @@ Khác hẳn TN THPT: **đa số địa phương vẫn tự luận**, cấu trúc
 
 ## 6. Các “dạng đề” sản phẩm nên hỗ trợ bằng template
 
-Không chỉ một loại ma trận. Nên có **ExamBlueprintTemplate**:
+Không chỉ một loại ma trận. Nên có **[ExamBlueprintTemplate](./11-Chu-thich.md#blueprint-template)**:
 
 | Template code | Mô tả | Ưu tiên |
 |---------------|-------|---------|
@@ -178,15 +178,15 @@ Không chỉ một loại ma trận. Nên có **ExamBlueprintTemplate**:
 | `PRACTICE_TOPIC_DRILL` | Luyện theo 1–n chủ đề, chọn số câu × mức | P0 (luyện tập) |
 | `GRADE10_ENTRANCE_*` | Theo Sở — tự luận | P2+ |
 
-User “bốc câu” = chọn template hoặc tự tạo ma trận → hệ thống lấy ngẫu nhiên từ pool thỏa điều kiện từng ô.
+User “[bốc câu](./11-Chu-thich.md#sinh-de)” = chọn template hoặc tự tạo ma trận → hệ thống lấy ngẫu nhiên từ pool thỏa điều kiện từng [ô](./11-Chu-thich.md#o-ma-tran).
 
 ---
 
 ## 7. Điểm khác biệt nghiệp vụ Toán so với môn khác (để nhớ khi code)
 
 - Công thức: **LaTeX** gần như bắt buộc.  
-- Hình vẽ (HHKG, đồ thị): ảnh hoặc SVG; câu có thể phụ thuộc hình chung (stimulus).  
-- Phần III: quy ước làm tròn **ghi trong stem**; chấm **khớp đúng** key (xem [09](./09-Dac-ta-de-va-quy-tac-da-chot.md)).  
+- Hình vẽ (HHKG, đồ thị): ảnh hoặc SVG; câu có thể phụ thuộc hình chung ([stimulus](./11-Chu-thich.md#stimulus)).  
+- Phần III: quy ước làm tròn **ghi trong [stem](./11-Chu-thich.md#stem)**; chấm **[khớp đúng](./11-Chu-thich.md#exact-match)** key (xem [09](./09-Dac-ta-de-va-quy-tac-da-chot.md)).  
 - Câu Đ/S: **mức độ gắn cả câu**; 4 ý cố định trong câu (xem [09](./09-Dac-ta-de-va-quy-tac-da-chot.md) §5).
 
 ---
@@ -197,9 +197,9 @@ Chi tiết đầy đủ: **[09-Dac-ta-de-va-quy-tac-da-chot.md](./09-Dac-ta-de-v
 
 | # | Câu hỏi cũ | Quyết định |
 |---|------------|------------|
-| 1 | Danh mục chủ đề? | Seed L1/L2 theo đề & ôn các năm (file 10); GV được chỉnh trước production |
+| 1 | Danh mục chủ đề? | Seed [L1](./11-Chu-thich.md#l1)/[L2](./11-Chu-thich.md#l2) theo đề & ôn các năm (file 10); GV được chỉnh trước production |
 | 2 | VDC riêng hay gộp? | **Lưu 4 mức** (có VDC). Báo cáo 3 mức Bộ: **VDC gộp vào VD** |
 | 3 | Short answer sai số? | Quy ước làm tròn **trong câu hỏi**; chỉ **so khớp đúng** mới cho điểm (nghiêm như thi ĐH/TN) |
-| 4 | Ma trận sát tỷ lệ năm? | **User chọn**: mode COARSE (phần + chủ đề + mức) hoặc FINE (chi tiết dạng bài) |
+| 4 | Ma trận sát tỷ lệ năm? | **User chọn**: mode [COARSE](./11-Chu-thich.md#coarse) (phần + chủ đề + mức) hoặc [FINE](./11-Chu-thich.md#fine) (chi tiết dạng bài) |
 | — | Đ/S mức theo ý hay câu? | **Theo cả câu** (đơn giản vận hành); 4 ý cố định, chấm vẫn theo số ý đúng |
 | — | Đặc tả đề? | **MVP bắt buộc**: sau bốc → đặc tả draft → GV chỉnh → khóa mới xuất bản |

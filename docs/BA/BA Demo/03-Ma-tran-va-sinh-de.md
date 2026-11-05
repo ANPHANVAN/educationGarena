@@ -6,19 +6,19 @@
 
 ## 1. Ma trận là gì (trong ngữ cảnh sản phẩm)
 
-**Ma trận đề** = bảng quy tắc phân bổ câu hỏi cho một đề / một phiên sinh đề.
+**[Ma trận đề](./11-Chu-thich.md#ma-tran)** = bảng quy tắc phân bổ câu hỏi cho một đề / một phiên sinh đề.
 
-Mỗi ô ma trận trả lời: *“Lấy bao nhiêu câu thỏa điều kiện X?”*
+Mỗi [ô ma trận](./11-Chu-thich.md#o-ma-tran) trả lời: *“Lấy bao nhiêu câu thỏa điều kiện X?”*
 
 Điều kiện X tối thiểu (MVP):
 
 - `subject` = Toán  
-- `grade` hoặc `topic` (chủ đề / dạng bài)  
-- `cognitive_level` ∈ {NB, TH, VD, VDC}  
-- `item_format` ∈ {MCQ_SINGLE, TRUE_FALSE_GROUP, SHORT_ANSWER, …}  
-- (optional) `competency`, `chapter`, tags
+- `grade` hoặc `topic` ([chủ đề](./11-Chu-thich.md#chu-de) / dạng bài)  
+- `cognitive_level` ∈ {[NB](./11-Chu-thich.md#nb), [TH](./11-Chu-thich.md#th), [VD](./11-Chu-thich.md#vd), [VDC](./11-Chu-thich.md#vdc)}  
+- `item_format` ∈ {[MCQ_SINGLE](./11-Chu-thich.md#mcq), [TRUE_FALSE_GROUP](./11-Chu-thich.md#dung-sai), [SHORT_ANSWER](./11-Chu-thich.md#tra-loi-ngan), …}  
+- (optional) [`competency`](./11-Chu-thich.md#nang-luc), `chapter`, tags
 
-**Sinh đề** = với mỗi ô, lấy ngẫu nhiên (hoặc theo trọng số) đủ đơn vị từ ngân hàng **còn đủ tồn kho**, tạo **ExamVersion DRAFT + Đặc tả DRAFT** → GV chỉnh → **khóa** mới đưa vào thi/luyện chính thức.
+**[Sinh đề](./11-Chu-thich.md#sinh-de)** = với mỗi ô, lấy ngẫu nhiên (hoặc theo trọng số) đủ đơn vị từ [ngân hàng](./11-Chu-thich.md#ngan-hang-cau-hoi) **còn đủ [tồn kho](./11-Chu-thich.md#ton-kho)**, tạo **[ExamVersion](./11-Chu-thich.md#exam-version) DRAFT + [Đặc tả](./11-Chu-thich.md#dac-ta-de) DRAFT** → GV chỉnh → **[khóa](./11-Chu-thich.md#khoa-de)** mới đưa vào thi/luyện chính thức.
 
 ```
 Ma trận (Blueprint)  [COARSE | FINE]
@@ -48,12 +48,12 @@ Chi tiết đặc tả & quyết định chốt: **[09-Dac-ta-de-va-quy-tac-da-c
 
 ## 2. Cách user tạo ma trận + độ chi tiết
 
-User chọn **granularity**:
+User chọn **[granularity](./11-Chu-thich.md#granularity)**:
 
 | Mode | Filter ô | Ai dùng |
 |------|----------|---------|
-| **COARSE** | Phần + chủ đề L1 + mức (NB/TH/VD/VDC) + format | Nhanh, luyện, không soi sát năm |
-| **FINE** | COARSE + dạng bài L2 / đơn vị kiến thức mịn | Kiểm soát chi tiết, sát phân bố năm |
+| **[COARSE](./11-Chu-thich.md#coarse)** | Phần + chủ đề [L1](./11-Chu-thich.md#l1) + mức (NB/TH/VD/VDC) + format | Nhanh, luyện, không soi sát năm |
+| **[FINE](./11-Chu-thich.md#fine)** | COARSE + dạng bài [L2](./11-Chu-thich.md#l2) / đơn vị kiến thức mịn | Kiểm soát chi tiết, sát phân bố năm |
 
 ### A. Template có sẵn
 
@@ -83,7 +83,7 @@ Với Đ/S: ô = **số câu** (group) đúng chủ đề × mức — giống M
 | Format | Đơn vị ma trận / mức độ | Ghi chú |
 |--------|-------------------------|---------|
 | MCQ_SINGLE | 1 câu | |
-| SHORT_ANSWER | 1 câu | Exact match; làm tròn ghi trong stem |
+| SHORT_ANSWER | 1 câu | [Exact match](./11-Chu-thich.md#exact-match); làm tròn ghi trong [stem](./11-Chu-thich.md#stem) |
 | TRUE_FALSE_GROUP | **1 câu = 1 đơn vị**; `cognitive_level` trên câu | 4 ý cố định trong câu; không gắn/lọc mức theo ý |
 | Stimulus | Thuộc câu / không tính điểm riêng | |
 
@@ -101,7 +101,7 @@ Với Đ/S: ô = **số câu** (group) đúng chủ đề × mức — giống M
 
 1. Mỗi ô: `available_count >= requested_count`, nếu không → báo thiếu (liệt kê ô thiếu), **không sinh đề cụt**.  
 2. Không lấy trùng cùng một `question_id` trong một ExamVersion.  
-3. Câu thuộc group/stimulus: lấy cả bundle, không tách nửa.
+3. Câu thuộc group/[stimulus](./11-Chu-thich.md#stimulus): lấy cả bundle, không tách nửa.
 4. Tôn trọng `status = approved` (chỉ câu đã duyệt mới vào đề thi chính thức; luyện tập có thể cho `approved` + `practice_ok`).
 
 ### 4.2. Ràng buộc nên có sớm
@@ -138,7 +138,7 @@ Output: ExamVersion DRAFT + ExamSpec DRAFT  |  ShortageReport
      snapshot toàn bộ stem/key/metadata vào ExamVersion + ExamSpec
 ```
 
-**Snapshot chỉ sau LOCK.** Draft được sửa; đề đã có Attempt thì không sửa — clone version mới.
+**[Snapshot](./11-Chu-thich.md#snapshot) chỉ sau LOCK.** Draft được sửa; đề đã có [Attempt](./11-Chu-thich.md#attempt) thì không sửa — clone version mới.
 
 ---
 
@@ -162,7 +162,7 @@ UI nên hiện **tồn kho realtime**:
 
 ## 7. Ví dụ: sinh đề thi thử TN THPT
 
-Blueprint cố định phần I/II/III + scoring.  
+Blueprint cố định phần I/II/III + [scoring](./11-Chu-thich.md#score-policy).  
 Phân bổ chủ đề: dùng config mặc định của năm (bảng seed từ giáo viên).  
 Sau sinh: tạo Session 90 phút, palette 22 “câu” (Phần II hiện 4 câu, mỗi câu 4 ý trên UI).
 
@@ -178,7 +178,7 @@ score = sum(MCQ correct)*0.25
 
 ---
 
-## 8. Phân biệt “Đề cố định” vs “Đề theo ma trận”
+## 8. Phân biệt “[Đề cố định](./11-Chu-thich.md#de-dong-goi)” vs “Đề theo ma trận”
 
 | Loại | Khi nào dùng | Lưu gì |
 |------|--------------|--------|
@@ -196,7 +196,7 @@ Chi tiết đã chốt: [`01` §6.5](./01-Tong-quan-san-pham.md).
 1. Xem tồn kho theo (chủ đề × mức × format) — **Đ/S đếm theo câu**.  
 2. Chọn template + mode COARSE/FINE; nhập/chỉnh bảng số.  
 3. Preview thiếu/đủ theo ô.  
-4. **Sinh đề** → màn **Đặc tả + danh sách câu** (đổi câu cùng ô, reorder, sửa YCCĐ).  
+4. **Sinh đề** → màn **Đặc tả + danh sách câu** (đổi câu cùng ô, reorder, sửa [YCCĐ](./11-Chu-thich.md#yccd)).  
 5. **Khóa đề** (validate khớp ma trận) → xuất bản kỳ thi / luyện.  
 6. (Nice) Nhân bản ma trận; export đặc tả PDF.
 

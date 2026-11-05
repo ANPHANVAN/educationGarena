@@ -1,6 +1,6 @@
 # 08 — Nguồn tham chiếu & ghi chú research
 
-Tài liệu BA Demo tổng hợp từ demo UI Bộ (ảnh nội bộ), chat ý tưởng team, và nguồn công khai. Số liệu ma trận chủ đề theo năm **có thể lệch** — cần giáo viên đối chiếu đề chính thức mới nhất trước khi khóa template.
+Tài liệu BA Demo tổng hợp từ demo UI Bộ (ảnh nội bộ), chat ý tưởng team, và nguồn công khai. Số liệu [ma trận](./11-Chu-thich.md#ma-tran) chủ đề theo năm **có thể lệch** — cần giáo viên đối chiếu đề chính thức mới nhất trước khi khóa template.
 
 ---
 
@@ -10,7 +10,7 @@ Tài liệu BA Demo tổng hợp từ demo UI Bộ (ảnh nội bộ), chat ý t
 |-------|-----------|
 | Ý tưởng thô / chat Facebook | `docs/Ý tưởng thô/Chat với my friend.md` |
 | Prompt yêu cầu BA | `docs/Agent chat/tôi hỏi agent.md` |
-| Ảnh demo CBT Bộ GD&ĐT | `docs/Pictures/image.png` … `image4.png` |
+| Ảnh demo [CBT](./11-Chu-thich.md#cbt) Bộ GD&ĐT | `docs/Pictures/image.png` … `image4.png` |
 
 ---
 

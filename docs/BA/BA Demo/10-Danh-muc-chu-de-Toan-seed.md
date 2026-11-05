@@ -1,12 +1,12 @@
 # 10 — Danh mục chủ đề Toán (seed) từ đề / ôn các năm
 
 > **Mục đích:** seed `Topic` cho năm đầu. Không phải văn bản pháp quy — tổng hợp từ phân tích đề TN, tài liệu ôn, ma trận cộng đồng (MathVN, Toanmath, ma trận ôn 2024 kiểu 50 câu CT cũ, đề 2025+ CT 2018).  
-> Giáo viên partner **được quyền sửa/gộp/tách** trước khi khóa taxonomy production.
+> Giáo viên partner **được quyền sửa/gộp/tách** trước khi khóa [taxonomy](./11-Chu-thich.md#taxonomy) production.
 
 Hai lớp tag:
 
-- **L1 — Chủ đề (COARSE):** dùng ma trận nhanh / báo cáo  
-- **L2 — Dạng bài (FINE):** khi user bật kiểm soát chi tiết  
+- **[L1](./11-Chu-thich.md#l1) — [Chủ đề](./11-Chu-thich.md#chu-de) ([COARSE](./11-Chu-thich.md#coarse)):** dùng [ma trận](./11-Chu-thich.md#ma-tran) nhanh / báo cáo  
+- **[L2](./11-Chu-thich.md#l2) — Dạng bài ([FINE](./11-Chu-thich.md#fine)):** khi user bật kiểm soát chi tiết  
 
 ---
 
@@ -149,7 +149,7 @@ Dùng để hiểu **thói quen phân loại của GV**, không copy số câu v
 
 ## 5. Quy tắc dùng trong hệ thống
 
-1. Mỗi `QuestionItem` gắn **≥1 topic L1**; L2 optional (bắt buộc nếu blueprint FINE yêu cầu).  
+1. Mỗi [`QuestionItem`](./11-Chu-thich.md#question-item) gắn **≥1 topic L1**; L2 optional (bắt buộc nếu blueprint FINE yêu cầu).  
 2. Template TN mặc định filter **L1 + mức + format/phần**.  
-3. Đổi danh mục: versioning `Topic.taxonomy_version` — đề đã snapshot không đổi tên topic cũ.  
+3. Đổi danh mục: versioning `Topic.taxonomy_version` — đề đã [snapshot](./11-Chu-thich.md#snapshot) không đổi tên topic cũ.  
 4. Chuyên đề không bắt buộc (đồ thị, …): flag `elective=true` — ma trận chuẩn Bộ mặc định **không** bắt buộc ô này trừ khi GV bật.

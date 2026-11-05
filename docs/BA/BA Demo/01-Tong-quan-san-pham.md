@@ -9,16 +9,16 @@ Sản phẩm phục vụ:
 | Phân khúc | Nhu cầu chính | Ai trả tiền |
 |-----------|---------------|-------------|
 | Học sinh / phụ huynh | Luyện đề chuẩn cấu trúc, thi thử, theo dõi tiến bộ | Cá nhân (gói tài khoản) |
-| Giáo viên / trung tâm | Ngân hàng câu hỏi + **sinh đề theo ma trận** + tổ chức thi online | Trung tâm / giáo viên |
+| Giáo viên / trung tâm | [Ngân hàng câu hỏi](./11-Chu-thich.md#ngan-hang-cau-hoi) + **[sinh đề](./11-Chu-thich.md#sinh-de) theo [ma trận](./11-Chu-thich.md#ma-tran)** + tổ chức thi online | Trung tâm / giáo viên |
 | (Sau) Nhượng quyền môn khác | Cùng mô hình cho Lý, Hóa, Anh… | Partner môn |
 
 ## 2. Core vs “râu ria” (đã thống nhất hướng từ chat nội bộ)
 
 ### Core (phải làm trước — quyết định sống còn)
 
-1. **Ngân hàng câu hỏi** có gắn metadata (môn, lớp, chủ đề/dạng bài, mức độ khó / cấp độ tư duy, dạng thức câu hỏi).  
-2. **Ma trận đề thi** → quy tắc “bốc” số lượng câu theo (dạng bài × mức độ × dạng thức…).  
-3. **Sinh đề / phiên bản đề** từ ma trận (random trong pool đủ điều kiện).  
+1. **Ngân hàng câu hỏi** có gắn metadata (môn, lớp, [chủ đề](./11-Chu-thich.md#chu-de)/dạng bài, mức độ khó / [cấp độ tư duy](./11-Chu-thich.md#cap-do-tu-duy), [dạng thức](./11-Chu-thich.md#dang-thuc) câu hỏi).  
+2. **Ma trận đề thi** → quy tắc “[bốc](./11-Chu-thich.md#sinh-de)” số lượng câu theo (dạng bài × mức độ × dạng thức…).  
+3. **Sinh đề / [phiên bản đề](./11-Chu-thich.md#exam-version)** từ ma trận (random trong pool đủ điều kiện).  
 4. **Thi trên máy** đủ dùng: đăng nhập phiên thi, đồng hồ, palette câu, lưu đáp án, chấm tự động (phần khách quan), xem điểm.  
 5. **Luyện tập** tái sử dụng cùng ngân hàng / đề (UI có thể vui hơn sau).
 
@@ -38,7 +38,7 @@ Sản phẩm phục vụ:
 
 Ảnh trong `docs/Pictures/` mô tả flow thí sinh của phần mềm thi thử nghiệm:
 
-1. **Đăng nhập** — mã thí sinh + mật khẩu + chọn đợt thi.  
+1. **Đăng nhập** — mã thí sinh + mật khẩu + chọn [đợt thi](./11-Chu-thich.md#exam-campaign).  
 2. **Dashboard** — thông tin thí sinh, hội đồng/điểm thi, danh sách môn → “Vào thi”.  
 3. **Làm bài** — header (timer, tiến độ), vùng nội dung (có thể split: ngữ liệu trái / câu hỏi phải), palette câu dưới (đã làm / chưa làm).  
 4. **Kết quả** — số câu đã trả lời + điểm /10.
@@ -59,7 +59,7 @@ Sản phẩm phục vụ:
 
 - Chuẩn quốc gia; lớp 10–11 cũng ôn sớm / làm quen format.  
 - Chấm máy được → phù hợp team nhỏ.  
-- Demo Bộ cũng là CBT trắc nghiệm.
+- Demo Bộ cũng là [CBT](./11-Chu-thich.md#cbt) trắc nghiệm.
 
 Thi vào 10 (tự luận thuần) là **mở rộng schema** (P2); kiểm tra định kỳ nhà trường dùng lại ma trận + 3 dạng thức + (sau) tự luận.
 
@@ -84,12 +84,12 @@ Chi phí AI: **API key của user** khi cần parse đề — tránh burn vốn 
 | Loại nội dung | Ai tạo | Vào đâu | Duyệt? |
 |---------------|--------|---------|--------|
 | Câu của GV / cá nhân | Giáo viên | Bank **cá nhân** (và/hoặc trung tâm nếu thuộc org) | Tự chịu trách nhiệm; dùng cho đề của họ |
-| Câu đóng góp hệ thống | GV / editor | Chờ duyệt → **bank hệ thống** | **Bắt buộc** ContentAdmin / người duyệt: đúng đề + đáp án |
+| Câu đóng góp hệ thống | GV / editor | Chờ duyệt → **bank hệ thống** | **Bắt buộc** [ContentAdmin](./11-Chu-thich.md#content-admin) / người duyệt: đúng đề + đáp án |
 | Đề do GV tạo | Giáo viên | Đề riêng của người đó (ma trận → ExamVersion) | Không cần duyệt hệ thống để dùng nội bộ |
 
 Mỗi câu **lưu nguồn gốc** (`created_by`, thời điểm, org nếu có) để tham chiếu / audit — kể cả sau khi đã vào bank chung.
 
-### 6.3. Lớp sở hữu (ownership) — bảng động
+### 6.3. [Lớp sở hữu (ownership)](./11-Chu-thich.md#ownership-layer) — bảng động
 
 Không hard-code 2–3 enum cố định. Dùng **bảng / danh mục layer sở hữu** có thể thêm mới, ví dụ seed:
 
@@ -108,13 +108,13 @@ Gắn layer vào **câu hỏi** và/hoặc **đề (ExamVersion)** + rule ai đ�
 - [x] Đầu kỳ: **cho dùng rộng** (không giới hạn kho vì chưa có gì để giới hạn).  
 - Paywall / gói bán: chốt sau khi bank đủ lớn.
 
-### 6.5. “Đề đóng gói” là gì — và thi công bằng thế nào?
+### 6.5. “[Đề đóng gói](./11-Chu-thich.md#de-dong-goi)” là gì — và thi công bằng thế nào?
 
 Hai khái niệm **không loại trừ nhau**:
 
 | Khái niệm | Nghĩa trong BA | Học sinh thi thế nào |
 |-----------|----------------|----------------------|
-| **Sinh từ ma trận** | Random **một lần** theo ô ma trận → ra **một** `ExamVersion` (danh sách câu đã khóa) | Cả lớp / cả đợt mở **cùng link / cùng ExamVersion** → **cùng một đề** → công bằng |
+| **Sinh từ ma trận** | Random **một lần** theo [ô](./11-Chu-thich.md#o-ma-tran) ma trận → ra **một** `ExamVersion` (danh sách câu đã khóa) | Cả lớp / cả đợt mở **cùng link / cùng ExamVersion** → **cùng một đề** → công bằng |
 | **Đề đóng gói (Fixed Exam)** | Đề đã cố định sẵn: GV soạn tay chọn từng câu, hoặc đề bán/đóng gói sẵn, hoặc bản đã sinh từ ma trận rồi **lưu lại** như sản phẩm | Cũng là một `ExamVersion` cố định + link |
 
 **Trả lời đúng lo của bạn:** sinh ngẫu nhiên **không** có nghĩa mỗi học sinh một đề khác.  
