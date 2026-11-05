@@ -187,7 +187,7 @@ User “bốc câu” = chọn template hoặc tự tạo ma trận → hệ th�
 - Công thức: **LaTeX** gần như bắt buộc.  
 - Hình vẽ (HHKG, đồ thị): ảnh hoặc SVG; câu có thể phụ thuộc hình chung (stimulus).  
 - Phần III: quy ước làm tròn **ghi trong stem**; chấm **khớp đúng** key (xem [09](./09-Dac-ta-de-va-quy-tac-da-chot.md)).  
-- Câu Đ/S: stimulus chung chỉ là bối cảnh; **mức độ gắn từng ý** (xem [09](./09-Dac-ta-de-va-quy-tac-da-chot.md) §5).
+- Câu Đ/S: **mức độ gắn cả câu**; 4 ý cố định trong câu (xem [09](./09-Dac-ta-de-va-quy-tac-da-chot.md) §5).
 
 ---
 
@@ -201,5 +201,5 @@ Chi tiết đầy đủ: **[09-Dac-ta-de-va-quy-tac-da-chot.md](./09-Dac-ta-de-v
 | 2 | VDC riêng hay gộp? | **Lưu 4 mức** (có VDC). Báo cáo 3 mức Bộ: **VDC gộp vào VD** |
 | 3 | Short answer sai số? | Quy ước làm tròn **trong câu hỏi**; chỉ **so khớp đúng** mới cho điểm (nghiêm như thi ĐH/TN) |
 | 4 | Ma trận sát tỷ lệ năm? | **User chọn**: mode COARSE (phần + chủ đề + mức) hoặc FINE (chi tiết dạng bài) |
-| — | Đ/S mức theo group? | **Chuẩn theo từng ý**; group/stimulus chỉ là bối cảnh |
+| — | Đ/S mức theo ý hay câu? | **Theo cả câu** (đơn giản vận hành); 4 ý cố định, chấm vẫn theo số ý đúng |
 | — | Đặc tả đề? | **MVP bắt buộc**: sau bốc → đặc tả draft → GV chỉnh → khóa mới xuất bản |

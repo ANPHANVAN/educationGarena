@@ -8,7 +8,7 @@ Team: **2 dev (junior–middle) + 1 giáo viên**. Deadline nội bộ từng nh
 
 Một giáo viên có thể:
 
-1. Thêm câu hỏi Toán (MCQ, Đ/S với **mức từng ý**, trả lời ngắn) kèm chủ đề + mức độ.  
+1. Thêm câu hỏi Toán (MCQ, Đ/S **mức theo câu** + 4 ý cố định, trả lời ngắn) kèm chủ đề + mức độ.  
 2. Tạo ma trận (template TN hoặc bảng chủ đề × mức), chọn COARSE/FINE.  
 3. Sinh đề khi đủ tồn kho; báo thiếu nếu không đủ.  
 4. Xem **đặc tả draft**, đổi câu/chỉnh YCCĐ, **khóa đề** rồi mở kỳ thi / luyện.  
@@ -29,7 +29,7 @@ Một học sinh có thể:
 | Hạng mục | Ghi chú |
 |----------|---------|
 | Auth cơ bản (học sinh / giáo viên) | Email + password OK |
-| CRUD câu hỏi 3 format + LaTeX; Đ/S per-ý level | |
+| CRUD câu hỏi 3 format + LaTeX; Đ/S mức theo câu | |
 | Taxonomy seed L1 (+ L2 tối thiểu) | Xem file 10; GV chỉnh |
 | Blueprint COARSE/FINE + sinh đề + tồn kho | Core |
 | **Đặc tả draft → chỉnh → khóa đề** | Core (file 09) |

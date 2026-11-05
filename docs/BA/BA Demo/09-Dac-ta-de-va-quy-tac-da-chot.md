@@ -43,13 +43,13 @@ Ma trận (Blueprint)
 
 | Trường | Bắt buộc |
 |--------|----------|
-| Vị trí đề (Phần, số câu, ý a/b/c/d nếu Đ/S) | ✓ |
+| Vị trí đề (Phần, số câu) | ✓ |
 | Topic / đơn vị kiến thức | ✓ |
-| Cognitive level của **đơn vị chấm** (câu hoặc ý) | ✓ |
+| Cognitive level của **câu** | ✓ |
 | Item format | ✓ |
 | Mô tả yêu cầu cần đạt / ghi chú đặc tả (text) | ✓ (có thể auto-fill từ bank rồi sửa) |
-| QuestionItem id (hoặc snapshot) | ✓ |
-| Điểm tối đa dòng | ✓ |
+| Question id (hoặc snapshot); Đ/S kèm 4 ý trong nội dung | ✓ |
+| Điểm tối đa dòng (Đ/S: trần 1 điểm/câu theo policy TN) | ✓ |
 
 Xuất: xem trên web + (P1) export PDF/Word giống hồ sơ trường.
 
@@ -118,38 +118,43 @@ Template `TN_THPT_TOAN_*` có thể ship sẵn bản COARSE (theo chủ đề b�
 
 ---
 
-## 5. Đúng/Sai — chuẩn theo **từng ý** (không gộp mức cả group)
+## 5. Đúng/Sai — mức độ khó theo **cả câu** (đã chỉnh lại 2026-11-05)
 
-**Đã chốt hướng chuẩn (không làm bản “MVP đơn giản gộp mức group”):**
+> Override quyết định “theo từng ý” trong commit docs trước: quá phức tạp cho thiết kế lẫn user vận hành.
 
-- **Stimulus / mở đầu chung** = bối cảnh dùng chung (không mang `cognitive_level` để filter ma trận).  
-- Mỗi **ý (a/b/c/d)** = `QuestionItem` độc lập về:
-  - `cognitive_level` (NB|TH|VD|VDC) — **bắt buộc**
-  - `topic` (thường cùng topic group, vẫn cho phép lệch nếu cần)
-  - đáp án Đ/S + lời giải ý
-- Ma trận Phần II / filter bank: đếm và bốc theo **ý** (hoặc theo ràng buộc “đủ 4 ý thuộc cùng group thỏa phân bố mức”).
+**Chốt đơn giản:**
 
-### Hệ quả sinh đề Phần II
+- Một câu Đ/S = **1 đơn vị** trong bank / ma trận / đặc tả / tồn kho.  
+- `cognitive_level` + `topic` gắn ở **cấp câu (group)**, không gắn từng ý.  
+- 4 ý (a/b/c/d) là **cấu trúc cố định** của câu: stem ý + đáp án Đ/S + (optional) lời giải ý. User **không** chỉnh mức từng ý, cũng không bốc/lọc theo mức ý.  
+- Stimulus / đoạn mở đầu chung thuộc câu đó.
 
-Có hai chiến lược kỹ thuật (cùng model dữ liệu):
+### Vì sao hợp lý hơn
 
-**A. Bốc theo group có ràng buộc mức các ý (khuyến nghị UX gần đề thật)**  
-- Chọn group (stimulus + 4 ý) sao cho **bộ 4 mức** khớp ô ma trận (vd. 1 TH + 2 VD + 1 VDC).  
-- Hiển thị vẫn là 1 câu Đ/S 4 ý.
+| Theo từng ý (bỏ) | Theo cả câu (giữ) |
+|------------------|-------------------|
+| Ma trận Phần II phải profile 4 mức / group | Ô ma trận: “1 câu Đ/S topic X mức Y” — giống MCQ |
+| Tồn kho & thiếu pool khó giải thích cho GV | Đếm câu như các phần khác |
+| Sinh đề ràng buộc bộ ý phức tạp | Random theo filter câu |
 
-**B. Bốc từng ý rồi ghép**  
-- Rủi ro mất tính thống nhất ngữ cảnh — chỉ dùng khi bank gắn `group_id` sẵn và chỉ lấy đủ 4 ý cùng group.
+### Chấm điểm — không đổi
 
-→ **MVP implement A**, dữ liệu vẫn per-ý để báo cáo/đặc tả/tồn kho đúng chuẩn.
+Vẫn theo **số ý đúng trong câu** khi dùng score policy TN: 1→0,1 · 2→0,25 · 3→0,5 · 4→1,0.  
+(Điểm phụ thuộc làm đúng bao nhiêu ý; **phân loại độ khó** thì vẫn là thuộc tính của cả câu.)
 
-Chấm điểm: vẫn theo **số ý đúng trong group** (0,1 / 0,25 / 0,5 / 1) khi dùng score policy TN — không đổi.
+### Sinh đề Phần II
+
+```
+Filter: topic (+ L2 nếu FINE) + cognitive_level + format=TRUE_FALSE_GROUP
+→ lấy N câu (group đủ 4 ý) thỏa filter
+```
 
 ---
 
 ## 6. Entity bổ sung (cập nhật model)
 
 - `ExamSpec` / `ExamSpecification` — đặc tả gắn `exam_version_id`, status draft|locked  
-- `ExamSpecRow` — từng dòng đặc tả  
+- `ExamSpecRow` — từng dòng đặc tả (Đ/S: **1 dòng / câu**, có thể liệt kê 4 ý trong nội dung)  
 - `Blueprint.granularity` — `COARSE` | `FINE`  
-- `QuestionItem.cognitive_level` — bắt buộc với mọi item chấm được (MCQ = 1 item; Đ/S = 4 items; Short = 1 item)  
+- `cognitive_level` — bắt buộc trên **Question** (MCQ / Đ/S group / Short); ý Đ/S **không** có level riêng  
 - Bỏ `tolerance` khỏi short-answer policy thi; chỉ còn `accepted_answers[]`

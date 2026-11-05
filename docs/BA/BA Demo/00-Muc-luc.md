@@ -17,14 +17,14 @@
 | 06 | [06-MVP-uu-tien-va-pham-vi.md](./06-MVP-uu-tien-va-pham-vi.md) | Cắt phạm vi MVP, cái làm / cái chưa làm, rủi ro vốn |
 | 07 | [07-Mo-rong-nhieu-mon.md](./07-Mo-rong-nhieu-mon.md) | Thiết kế để sau này mở Lý/Hóa/Anh… |
 | 08 | [08-Nguon-tham-chieu.md](./08-Nguon-tham-chieu.md) | Nguồn research, ghi chú cập nhật |
-| 09 | [09-Dac-ta-de-va-quy-tac-da-chot.md](./09-Dac-ta-de-va-quy-tac-da-chot.md) | **Đặc tả đề + quyết định đã chốt** (VDC, short, Đ/S theo ý, COARSE/FINE) |
+| 09 | [09-Dac-ta-de-va-quy-tac-da-chot.md](./09-Dac-ta-de-va-quy-tac-da-chot.md) | **Đặc tả đề + quyết định đã chốt** (VDC, short, Đ/S mức theo câu, COARSE/FINE) |
 | 10 | [10-Danh-muc-chu-de-Toan-seed.md](./10-Danh-muc-chu-de-Toan-seed.md) | Danh mục chủ đề Toán seed từ đề/ôn các năm |
 | — | [cau-truc-cau-hoi-bo-mon-khac/](./cau-truc-cau-hoi-bo-mon-khac/00-Muc-luc.md) | Cấu trúc đề & dạng câu **các môn khác** (toàn ngành) |
 
 ## Cách đọc đề xuất
 
 1. Đọc **01** để thống nhất “core là gì”.  
-2. Đọc **02 + 03** + **09** (quy tắc đã chốt: đặc tả, VDC, short, Đ/S theo ý).  
+2. Đọc **02 + 03** + **09** (đặc tả, VDC, short, Đ/S **mức theo câu**).  
 3. Đọc **10** khi seed taxonomy; **04 + 05** cho model & bank.  
 4. Đọc **06** trước khi code; **07** để không chặn mở rộng.  
 5. Thư mục **cau-truc-cau-hoi-bo-mon-khac/** khi cần toàn ngành.

@@ -21,7 +21,7 @@ Ngân hàng tốt = ma trận mới có cái để bốc. Với team nhỏ, **qu
 | subject_id | ✓ | |
 | grade_levels[] | ✓ | Một câu có thể ôn cho nhiều lớp (vd. hàm số 11–12) |
 | topic_ids[] | ✓ ≥1 | Chủ đề chính; phụ để tag |
-| cognitive_level | ✓ | NB/TH/VD/VDC — **trên mỗi QuestionItem** (Đ/S: từng ý). Báo cáo 3 mức: VDC→VD |
+| cognitive_level | ✓ | NB/TH/VD/VDC — **trên câu** (Đ/S: 1 mức cho cả group). Báo cáo 3 mức: VDC→VD |
 | item_format | ✓ | |
 | status | ✓ | draft / in_review / approved / rejected / archived |
 | stem (nội dung) | ✓ | Text + LaTeX |
@@ -48,22 +48,22 @@ Question
 Ràng buộc: đúng đúng 1 choice.  
 (Đa đáp án đúng để sau — ít dùng trong đề TN Toán hiện tại.)
 
-### 3.2. Đúng / Sai (group) — mức theo từng ý (đã chốt)
+### 3.2. Đúng / Sai (group) — mức theo cả câu (đã chốt lại)
 
 ```
-Stimulus? (đoạn mở đầu chung — chỉ bối cảnh, không mang cognitive_level filter)
-QuestionGroup (hiển thị 1 câu Đ/S)
-  items[4]:  // mỗi ý = QuestionItem độc lập
+Question (format=TRUE_FALSE_GROUP)
+  cognitive_level: NB|TH|VD|VDC   // BẮT BUỘC — 1 mức cho cả câu
+  topic_ids[]
+  stimulus? / stem_chung
+  ideas[4]:                      // cố định 4 ý; không có level riêng
     stem_idea
     correct: true|false
-    cognitive_level: NB|TH|VD|VDC   // BẮT BUỘC
-    topic_ids[]
-    explanation
+    explanation?
 ```
 
 UI thí sinh: 4 ý, mỗi ý Đ/S.  
-Chấm điểm group theo policy TN (0,1/0,25/0,5/1).  
-Ma trận / tồn kho / đặc tả: theo **ý**.
+Chấm điểm theo số ý đúng trong câu (policy TN: 0,1/0,25/0,5/1).  
+Ma trận / tồn kho / đặc tả / bốc câu: theo **câu** (giống MCQ).
 
 ### 3.3. Trả lời ngắn — chấm nghiêm (đã chốt)
 

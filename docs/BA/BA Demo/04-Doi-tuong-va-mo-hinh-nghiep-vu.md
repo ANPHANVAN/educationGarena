@@ -63,9 +63,9 @@ Giai đoạn 2 người: Teacher ≈ ContentAdmin; CenterAdmin có thể gộp T
 - **BlueprintCell** — filters (topic L1/L2, level, format, section) + count + score_policy_ref  
 - **Exam** — metadata đề (tên, môn, thời gian mặc định)  
 - **ExamVersion** — draft | locked; danh sách câu + snapshot khi locked  
-- **ExamVersionItem** — vị trí hiển thị, điểm tối đa, reference/snapshot **QuestionItem** (Đ/S = từng ý)  
+- **ExamVersionItem** — vị trí hiển thị, điểm tối đa, reference/snapshot **câu** (Đ/S = 1 câu kèm 4 ý)  
 - **ExamSpec** — đặc tả đề (draft | locked) gắn ExamVersion  
-- **ExamSpecRow** — dòng đặc tả: vị trí, YCCĐ, topic, level, format, trỏ item  
+- **ExamSpecRow** — dòng đặc tả: vị trí, YCCĐ, topic, level, format, trỏ câu  
 
 ### 3.4. Tổ chức thi & luyện
 
@@ -86,12 +86,12 @@ Giai đoạn 2 người: Teacher ≈ ContentAdmin; CenterAdmin có thể gộp T
 ## 4. Quan hệ then chốt (chữ, không ERD formal)
 
 - 1 Subject có nhiều Topic.  
-- 1 Question/Group thuộc 1 Subject; **mỗi QuestionItem** gắn ≥1 Topic + **1 CognitiveLevel bắt buộc**.  
-- 1 Stimulus (bối cảnh) gắn nhiều item/group — stimulus **không** thay thế mức độ của ý.  
+- 1 Question thuộc 1 Subject; gắn ≥1 Topic + **1 CognitiveLevel bắt buộc trên câu** (Đ/S không tách mức theo ý).  
+- Câu Đ/S có đúng 4 ý (đáp án + stem ý); mức/topic nằm ở câu.  
 - 1 Blueprint có nhiều BlueprintCell; granularity COARSE|FINE.  
 - 1 Blueprint sinh ra nhiều ExamVersion (kèm ExamSpec).  
 - 1 ExamVersion (locked) dùng cho nhiều Attempt.  
-- 1 Attempt có nhiều AttemptAnswer **theo item** → chấm (Đ/S cộng điểm theo group policy).
+- 1 Attempt lưu đáp án từng ý Đ/S → chấm theo policy số ý đúng trong câu.
 
 ---
 
@@ -99,10 +99,10 @@ Giai đoạn 2 người: Teacher ≈ ContentAdmin; CenterAdmin có thể gộp T
 
 ### Luồng A — Giáo viên dựng bank & ma trận → đặc tả
 
-1. Tạo/import câu hỏi; Đ/S gắn **mức từng ý**.  
+1. Tạo/import câu hỏi; Đ/S gắn **1 mức cho cả câu** + đủ 4 ý.  
 2. ContentAdmin duyệt (nếu bank chung).  
 3. Tạo Blueprint (template / tự do) + chọn COARSE hoặc FINE.  
-4. Hệ thống báo tồn kho theo ô (ý với Đ/S).  
+4. Hệ thống báo tồn kho theo ô (Đ/S đếm theo câu).  
 5. Sinh ExamVersion **DRAFT** + **Đặc tả DRAFT**.  
 6. GV chỉnh câu/thứ tự/YCCĐ → Validate → **LOCK** → xuất bản.
 

@@ -20,7 +20,7 @@ Nền tảng **ngân hàng câu hỏi + ma trận sinh đề + thi/luyện trên
 | Vào lớp 10 | Thường tự luận theo Sở | P2; đừng thiết kế chỉ MCQ |
 
 **Cấp độ:** NB → TH → VD → **VDC** (báo cáo 3 mức: VDC gộp VD).  
-**Dạng thức ≠ mức độ ≠ chủ đề** — ba trục tách riêng; Đ/S gắn mức **từng ý**.  
+**Dạng thức ≠ mức độ ≠ chủ đề** — ba trục tách riêng; Đ/S gắn mức **cả câu** (4 ý cố định).  
 **Sau bốc câu:** bắt buộc **đặc tả** → GV chỉnh → khóa đề. Short: làm tròn trong stem, chấm khớp đúng. Ma trận COARSE hoặc FINE do user chọn.
 
 ## Đối tượng hệ thống
@@ -41,5 +41,5 @@ Import đề: form + template text trước; AI bằng **API key user** sau.
 
 1. GV review **09** (đã chốt) + tinh chỉnh taxonomy **10**.  
 2. Chốt segment MVP: chỉ ôn TN 12 hay cả kiểm tra định kỳ.  
-3. Seed ~50 câu mẫu (Đ/S có mức từng ý) → code P0 theo **06** (có đặc tả).  
+3. Seed ~50 câu mẫu (Đ/S: 1 mức/câu + 4 ý) → code P0 theo **06** (có đặc tả).  
 4. Bản thống nhất → `docs/BA/BA chốt/`.
