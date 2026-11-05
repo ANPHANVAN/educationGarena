@@ -59,8 +59,9 @@ Giai đoạn 2 người: Teacher ≈ ContentAdmin; CenterAdmin có thể gộp T
 
 ### 3.3. Ma trận, [đặc tả](./11-Chu-thich.md#dac-ta-de) & đề
 
-- **[BlueprintTemplate](./11-Chu-thich.md#blueprint-template)** — mẫu (TN_THPT_TOAN_2025…)  
-- **Blueprint** — instance ma trận; có [`granularity`](./11-Chu-thich.md#granularity): [COARSE](./11-Chu-thich.md#coarse) | [FINE](./11-Chu-thich.md#fine)  
+- **[Khung bài thi](./11-Chu-thich.md#khung-bai-thi)** — trước ma trận: số phần, cách tính điểm và tổng điểm từng phần. Phần Đ/S có thang % theo số ý đúng  
+- **[BlueprintTemplate](./11-Chu-thich.md#blueprint-template)** — mẫu (TN_THPT_TOAN_2025…), đổ sẵn khung  
+- **Blueprint** — instance ma trận, bám khung đã chốt; có [`granularity`](./11-Chu-thich.md#granularity): [COARSE](./11-Chu-thich.md#coarse) | [FINE](./11-Chu-thich.md#fine)  
 - **[BlueprintCell](./11-Chu-thich.md#o-ma-tran)** — filters (topic [L1](./11-Chu-thich.md#l1)/[L2](./11-Chu-thich.md#l2), level, format, section) + count + [score_policy_ref](./11-Chu-thich.md#score-policy)  
 - **Exam** — metadata đề (tên, môn, thời gian mặc định)  
 - **[ExamVersion](./11-Chu-thich.md#exam-version)** — draft | locked; danh sách câu + [snapshot](./11-Chu-thich.md#snapshot) khi locked  
@@ -89,7 +90,7 @@ Giai đoạn 2 người: Teacher ≈ ContentAdmin; CenterAdmin có thể gộp T
 - 1 Subject có nhiều Topic.  
 - 1 Question thuộc 1 Subject; gắn ≥1 Topic + **1 CognitiveLevel bắt buộc trên câu** (Đ/S không tách mức theo ý).  
 - Câu Đ/S có đúng 4 ý (đáp án + [stem](./11-Chu-thich.md#stem) ý); mức/topic nằm ở câu.  
-- 1 Blueprint có nhiều BlueprintCell; granularity COARSE|FINE.  
+- 1 khung bài thi có nhiều phần (cách tính + tổng điểm). 1 Blueprint bám khung đó và có nhiều BlueprintCell; granularity COARSE|FINE.  
 - 1 Blueprint sinh ra nhiều ExamVersion (kèm ExamSpec).  
 - 1 ExamVersion (locked) dùng cho nhiều Attempt.  
 - 1 Attempt lưu đáp án từng ý Đ/S → chấm theo policy số ý đúng trong câu.
@@ -102,10 +103,11 @@ Giai đoạn 2 người: Teacher ≈ ContentAdmin; CenterAdmin có thể gộp T
 
 1. Tạo/import câu hỏi; Đ/S gắn **1 mức cho cả câu** + đủ 4 ý.  
 2. ContentAdmin duyệt (nếu bank chung).  
-3. Tạo Blueprint (template / tự do) + chọn COARSE hoặc FINE.  
-4. Hệ thống báo [tồn kho](./11-Chu-thich.md#ton-kho) theo ô (Đ/S đếm theo câu).  
-5. Sinh ExamVersion **DRAFT** + **Đặc tả DRAFT**.  
-6. GV chỉnh câu/thứ tự/YCCĐ → Validate → **[LOCK](./11-Chu-thich.md#khoa-de)** → xuất bản.
+3. Cấu hình [khung bài thi](./11-Chu-thich.md#khung-bai-thi) (số phần, cách tính, tổng điểm từng phần). Template TN đổ sẵn khung, GV vẫn sửa được.  
+4. Tạo Blueprint trên khung đó + chọn COARSE hoặc FINE.  
+5. Hệ thống báo [tồn kho](./11-Chu-thich.md#ton-kho) theo ô (Đ/S đếm theo câu).  
+6. Sinh ExamVersion **DRAFT** + **Đặc tả DRAFT**.  
+7. GV chỉnh câu/thứ tự/YCCĐ → Validate → **[LOCK](./11-Chu-thich.md#khoa-de)** → xuất bản.
 
 ### Luồng B — Học sinh thi thử “chuẩn Bộ”
 
@@ -113,7 +115,7 @@ Giai đoạn 2 người: Teacher ≈ ContentAdmin; CenterAdmin có thể gộp T
 2. Bắt đầu Attempt (server clock).  
 3. Làm bài, autosave.  
 4. Nộp / hết giờ.  
-5. Chấm theo score policy template.  
+5. Chấm theo cách tính đã cấu hình trên khung bài thi.  
 6. Hiện kết quả (điểm; chi tiết đúng/sai tùy cấu hình).
 
 ### Luồng C — Luyện theo ma trận tự chọn

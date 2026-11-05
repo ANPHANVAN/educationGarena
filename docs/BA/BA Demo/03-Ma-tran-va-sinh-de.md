@@ -4,6 +4,45 @@
 
 ---
 
+## 0. Bộ khung bài thi — trước khi vào ma trận
+
+Trước khi mở [ma trận](./11-Chu-thich.md#ma-tran) để chọn câu, user phải cấu hình [khung bài thi](./11-Chu-thich.md#khung-bai-thi). Ma trận chỉ đổ câu vào các phần đã có trong khung.
+
+Khung chốt ba thứ:
+
+1. Bài thi có **bao nhiêu phần**.
+2. **Cách tính điểm** của từng phần.
+3. **Tổng điểm** của từng phần.
+
+Template TN đổ sẵn khung (Toán: 3 phần, trần 3 + 4 + 3). Đề nhà trường thì user tự dựng. Dù đổ sẵn hay tự dựng, user thấy khung và sửa được **trước** khi vào ma trận.
+
+### Phần tính điểm đều theo câu
+
+User nhập số câu và tổng điểm phần. Điểm mỗi câu = tổng điểm phần / số câu. Câu đúng lấy hết mức đó, câu sai thì 0. Dùng cho trắc nghiệm nhiều lựa chọn và trả lời ngắn.
+
+Ví dụ trên ảnh: 8 câu, tổng phần 8 điểm → mỗi câu 1 điểm.
+
+![Phần trắc nghiệm: số câu, tổng điểm, điểm mỗi câu](<../../Pictures/Toan Phần 1 - cấu hình điểm.jpg>)
+
+### Phần Đúng/Sai — thang % theo số ý đúng
+
+Không chia đều. User nhập % điểm của câu khi đúng 1 ý, 2 ý, 3 ý, 4 ý. Điểm thực của câu = % đó × (tổng điểm phần / số câu phần).
+
+Ví dụ trên ảnh, khớp thang tốt nghiệp khi trần một câu Đúng/Sai là 1 điểm (10% → 0,1 · 25% → 0,25 · 50% → 0,5 · 100% → 1):
+
+| Số ý đúng | % điểm câu |
+|-----------|------------|
+| 1 | 10% |
+| 2 | 25% |
+| 3 | 50% |
+| 4 | 100% |
+
+![Thang điểm Đúng/Sai theo số ý đúng](<../../Pictures/Toan phần 2 số lượng câu đúng.jpg>)
+
+Tổng điểm bài = cộng tổng điểm các phần trong khung. Template chuẩn vẫn ra 10. Khung lệch thang thì cảnh báo, không chặn bằng một số 10 gắn cứng trong code.
+
+---
+
 ## 1. Ma trận là gì (trong ngữ cảnh sản phẩm)
 
 **[Ma trận đề](./11-Chu-thich.md#ma-tran)** = bảng quy tắc phân bổ câu hỏi cho một đề / một phiên sinh đề.
@@ -21,6 +60,9 @@ Mỗi [ô ma trận](./11-Chu-thich.md#o-ma-tran) trả lời: *“Lấy bao nhi
 **[Sinh đề](./11-Chu-thich.md#sinh-de)** = với mỗi ô, lấy ngẫu nhiên (hoặc theo trọng số) đủ đơn vị từ [ngân hàng](./11-Chu-thich.md#ngan-hang-cau-hoi) **còn đủ [tồn kho](./11-Chu-thich.md#ton-kho)**, tạo **[ExamVersion](./11-Chu-thich.md#exam-version) DRAFT + [Đặc tả](./11-Chu-thich.md#dac-ta-de) DRAFT** → GV chỉnh → **[khóa](./11-Chu-thich.md#khoa-de)** mới đưa vào thi/luyện chính thức.
 
 ```
+Khung bài thi (số phần, cách tính, tổng điểm từng phần)
+        │
+        ▼
 Ma trận (Blueprint)  [COARSE | FINE]
         │
         ▼
@@ -123,7 +165,7 @@ Với Đ/S: ô = **số câu** (group) đúng chủ đề × mức — giống M
 Input: Blueprint (cells, granularity, score policies)
 Output: ExamVersion DRAFT + ExamSpec DRAFT  |  ShortageReport
 
-1. Validate tổng điểm ≈ 10 (template chuẩn) hoặc cảnh báo nếu lệch.
+1. Validate tổng điểm bài = tổng các phần trong khung (template chuẩn vẫn ≈ 10; lệch thì cảnh báo).
 2. For each Cell (theo section):
      candidates = Query(bank, filters ở mức CÂU, status=approved)
      // Phần II: mỗi candidate = 1 câu Đ/S (đủ 4 ý cố định)

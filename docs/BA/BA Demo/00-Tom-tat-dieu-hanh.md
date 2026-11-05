@@ -7,7 +7,7 @@ Nền tảng **[ngân hàng câu hỏi](./11-Chu-thich.md#ngan-hang-cau-hoi) + [
 ## Core phải làm trước
 
 1. Câu hỏi có metadata: **[chủ đề](./11-Chu-thich.md#chu-de) (dạng bài) × [cấp độ tư duy](./11-Chu-thich.md#cap-do-tu-duy) × [dạng thức](./11-Chu-thich.md#dang-thuc) (loại câu hỏi)**.  
-2. **Ma trận** quy định số câu mỗi [ô](./11-Chu-thich.md#o-ma-tran) → hệ thống **bốc** từ bank.  
+2. **[Khung bài thi](./11-Chu-thich.md#khung-bai-thi)** trước: số phần, cách tính điểm và tổng điểm từng phần (Đ/S là % theo số ý đúng). Rồi **ma trận** quy định số câu mỗi [ô](./11-Chu-thich.md#o-ma-tran) → hệ thống **bốc** từ bank.  
 3. **Thi + chấm máy** 3 dạng: [MCQ](./11-Chu-thich.md#mcq), [Đúng/Sai](./11-Chu-thich.md#dung-sai) (4 ý), [Trả lời ngắn](./11-Chu-thich.md#tra-loi-ngan).  
 4. Luyện tập = tái sử dụng cùng engine (UI vui để sau).
 

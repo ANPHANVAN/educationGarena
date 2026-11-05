@@ -19,6 +19,9 @@ Trong sản phẩm: sau khi **[bốc câu](./11-Chu-thich.md#sinh-de)**, hệ th
 ### 1.2. Luồng MVP (chốt)
 
 ```
+Khung bài thi (số phần, cách tính, tổng điểm từng phần)
+        │
+        ▼
 Ma trận (Blueprint)
         │
         ▼
@@ -139,7 +142,7 @@ Template `TN_THPT_TOAN_*` có thể ship sẵn bản COARSE (theo chủ đề b�
 
 ### Chấm điểm — không đổi
 
-Vẫn theo **số ý đúng trong câu** khi dùng [score policy](./11-Chu-thich.md#score-policy) TN: 1→0,1 · 2→0,25 · 3→0,5 · 4→1,0.  
+Vẫn theo **số ý đúng trong câu**. Thang % nằm trên [khung bài thi](./11-Chu-thich.md#khung-bai-thi), không gắn vào từng câu trong bank. Khung TN mặc định: 1→10% · 2→25% · 3→50% · 4→100% (trần câu 1 điểm thì ra 0,1 / 0,25 / 0,5 / 1,0).  
 (Điểm phụ thuộc làm đúng bao nhiêu ý; **phân loại độ khó** thì vẫn là thuộc tính của cả câu.)
 
 ### Sinh đề Phần II
@@ -158,3 +161,17 @@ Filter: topic (+ L2 nếu FINE) + cognitive_level + format=TRUE_FALSE_GROUP
 - [`Blueprint.granularity`](./11-Chu-thich.md#granularity) — `COARSE` | `FINE`  
 - `cognitive_level` — bắt buộc trên **[Question](./11-Chu-thich.md#question-item)** ([MCQ](./11-Chu-thich.md#mcq) / Đ/S group / [Short](./11-Chu-thich.md#tra-loi-ngan)); ý Đ/S **không** có level riêng  
 - Bỏ `tolerance` khỏi short-answer policy thi; chỉ còn `accepted_answers[]`
+
+---
+
+## 7. Bộ khung bài thi — trước ma trận (2026-11-05)
+
+Trước khi vào ma trận chọn câu, user cấu hình [khung bài thi](./11-Chu-thich.md#khung-bai-thi):
+
+1. Bài có bao nhiêu phần.
+2. Cách tính điểm của từng phần.
+3. Tổng điểm của từng phần.
+
+Phần Đúng/Sai cấu hình % điểm theo số ý đúng (1 ý, 2 ý, 3 ý, 4 ý), không chia đều. Phần trắc nghiệm và trả lời ngắn: điểm mỗi câu = tổng điểm phần / số câu.
+
+Ảnh ví dụ và công thức: [03 §0](./03-Ma-tran-va-sinh-de.md).

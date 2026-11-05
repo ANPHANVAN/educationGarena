@@ -12,7 +12,7 @@
 | 00 | [00-Tom-tat-dieu-hanh.md](./00-Tom-tat-dieu-hanh.md) | Tóm tắt 1 trang |
 | 01 | [01-Tong-quan-san-pham.md](./01-Tong-quan-san-pham.md) | Bài toán kinh doanh, core vs phụ, đối thủ, demo Bộ GD&ĐT |
 | 02 | [02-Nghiep-vu-Toan-cau-truc-de-thi.md](./02-Nghiep-vu-Toan-cau-truc-de-thi.md) | Logic ngành Toán: THPT, kiểm tra 10–12, thi vào 10, cấp độ tư duy |
-| 03 | [03-Ma-tran-va-sinh-de.md](./03-Ma-tran-va-sinh-de.md) | Ma trận đề thi, “bốc câu”, quy tắc sinh đề, scoring |
+| 03 | [03-Ma-tran-va-sinh-de.md](./03-Ma-tran-va-sinh-de.md) | Khung bài thi (trước ma trận), ma trận, “bốc câu”, quy tắc sinh đề, scoring |
 | 04 | [04-Doi-tuong-va-mo-hinh-nghiep-vu.md](./04-Doi-tuong-va-mo-hinh-nghiep-vu.md) | Actors, entity nghiệp vụ, quan hệ, luồng chính |
 | 05 | [05-Ngan-hang-cau-hoi.md](./05-Ngan-hang-cau-hoi.md) | Cách quản lý câu hỏi, metadata, nhập liệu, chất lượng |
 | 06 | [06-MVP-uu-tien-va-pham-vi.md](./06-MVP-uu-tien-va-pham-vi.md) | Cắt phạm vi MVP, cái làm / cái chưa làm, rủi ro vốn |

@@ -8,7 +8,7 @@ Sửa định nghĩa ở file này. Các file khác giữ link, không chép l�
 
 **Phân loại câu** — [Chủ đề](#chu-de) · [L1](#l1) · [L2](#l2) · [Cấp độ tư duy](#cap-do-tu-duy) · [NB / TH / VD / VDC](#bon-muc) · [Dạng thức](#dang-thuc) · [MCQ](#mcq) · [Đúng/Sai](#dung-sai) · [Trả lời ngắn](#tra-loi-ngan) · [Năng lực](#nang-luc) · [Stem](#stem) · [Stimulus](#stimulus) · [Question / Item](#question-item)
 
-**Ma trận và sinh đề** — [Ngân hàng câu hỏi](#ngan-hang-cau-hoi) · [Ma trận](#ma-tran) · [Ô ma trận](#o-ma-tran) · [Granularity](#granularity) · [COARSE](#coarse) · [FINE](#fine) · [Sinh đề / bốc câu](#sinh-de) · [Tồn kho](#ton-kho) · [Template](#blueprint-template) · [Score policy](#score-policy)
+**Ma trận và sinh đề** — [Ngân hàng câu hỏi](#ngan-hang-cau-hoi) · [Khung bài thi](#khung-bai-thi) · [Ma trận](#ma-tran) · [Ô ma trận](#o-ma-tran) · [Granularity](#granularity) · [COARSE](#coarse) · [FINE](#fine) · [Sinh đề / bốc câu](#sinh-de) · [Tồn kho](#ton-kho) · [Template](#blueprint-template) · [Score policy](#score-policy)
 
 **Đề và thi** — [Đặc tả đề](#dac-ta-de) · [YCCĐ](#yccd) · [ExamVersion](#exam-version) · [Khóa đề](#khoa-de) · [Snapshot](#snapshot) · [Đề đóng gói](#de-dong-goi) · [Attempt](#attempt) · [Đợt thi](#exam-campaign) · [CBT](#cbt) · [Exact match](#exact-match)
 
@@ -256,6 +256,16 @@ Số câu trong bank đang thỏa filter của một ô và còn được phép 
 
 UI hiện kiểu: `NB · hàm số · MCQ: có 40 — yêu cầu 3`. Ô FINE đếm hẹp hơn, tới từng L2. Đúng/Sai đếm theo câu, không đếm theo ý.
 
+<a id="khung-bai-thi"></a>
+
+## Khung bài thi
+
+Bộ khung cấu hình **trước** [ma trận](#ma-tran): bài có mấy phần, mỗi phần tính điểm thế nào, tổng điểm phần là bao nhiêu. Ma trận chỉ chọn câu cho các phần đã có trong khung.
+
+Phần trắc nghiệm và trả lời ngắn: điểm mỗi câu = tổng điểm phần / số câu. Phần Đúng/Sai: user đặt % điểm câu theo số ý đúng (1 ý, 2 ý, 3 ý, 4 ý). Template TN đổ sẵn khung này; user vẫn sửa được trước khi vào ma trận.
+
+Đọc thêm: [03 §0](./03-Ma-tran-va-sinh-de.md).
+
 <a id="blueprint-template"></a>
 
 ## Template ma trận (BlueprintTemplate)
@@ -272,7 +282,7 @@ Khung đề làm sẵn, user nhân ra thành blueprint rồi sửa số. Ví d�
 
 ## Score policy
 
-Quy tắc đổi kết quả từng câu thành điểm, gắn template chứ không gắn cứng vào môn trong code. Policy TN Toán: MCQ 0,25; Đúng/Sai theo số ý đúng 0,1 / 0,25 / 0,5 / 1; trả lời ngắn 0,5. Môn khác dùng policy của template môn đó.
+Quy tắc đổi kết quả từng câu thành điểm, nằm trên từng phần của [khung bài thi](#khung-bai-thi), không gắn cứng vào môn trong code. Template chỉ đổ sẵn khung. Policy TN Toán: MCQ 0,25; Đúng/Sai theo số ý đúng 0,1 / 0,25 / 0,5 / 1 (tức 10% / 25% / 50% / 100% khi trần câu là 1); trả lời ngắn 0,5. Môn khác dùng khung của template môn đó.
 
 ---
 
