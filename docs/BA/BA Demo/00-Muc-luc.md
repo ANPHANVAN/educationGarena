@@ -21,6 +21,7 @@
 | 09 | [09-Dac-ta-de-va-quy-tac-da-chot.md](./09-Dac-ta-de-va-quy-tac-da-chot.md) | **Đặc tả đề + quyết định đã chốt** (VDC, short, Đ/S mức theo câu, COARSE/FINE) |
 | 10 | [10-Danh-muc-chu-de-Toan-seed.md](./10-Danh-muc-chu-de-Toan-seed.md) | Danh mục chủ đề Toán seed từ đề/ôn các năm |
 | 11 | [11-Chu-thich.md](./11-Chu-thich.md) | **Chú thích thuật ngữ** — một nơi tra cứu; lần đầu mỗi tài liệu nhắc tới thì dẫn link về đây |
+| 12 | [12-Phap-ly-va-rui-ro.md](./12-Phap-ly-va-rui-ro.md) | Checklist pháp lý ngắn: bản quyền, dữ liệu HS, TMĐT, marketing |
 | — | [cau-truc-cau-hoi-bo-mon-khac/](./cau-truc-cau-hoi-bo-mon-khac/00-Muc-luc.md) | Cấu trúc đề & dạng câu **các môn khác** (toàn ngành) |
 
 ## Cách đọc đề xuất

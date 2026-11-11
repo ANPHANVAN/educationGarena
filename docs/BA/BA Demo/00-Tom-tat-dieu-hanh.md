@@ -44,4 +44,5 @@ Import đề: form + template text trước; AI bằng **API key user** sau.
 1. GV review **09** + tinh chỉnh [taxonomy](./11-Chu-thich.md#taxonomy) **10** (Toán); seed mỏng môn demo thứ 2.  
 2. Segment đã chốt: **10–11–12**; đề khóa = 1 link chung cho cả lớp.  
 3. Seed câu mẫu → code P0 theo **06** (đa môn + đặc tả + xáo đề).  
-4. Bản thống nhất → `docs/BA/BA chốt/`.
+4. Đọc [12 — Pháp lý](./12-Phap-ly-va-rui-ro.md) trước khi public / thu tiền (không scrap đề, không gắn Bộ, consent phụ huynh).  
+5. Bản thống nhất → `docs/BA/BA chốt/`.
