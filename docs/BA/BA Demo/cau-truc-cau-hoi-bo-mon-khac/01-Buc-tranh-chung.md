@@ -7,7 +7,7 @@
 | 9→10 | Tuyển sinh lớp 10 | **Sở** GDĐT | Văn/Toán/Ngoại ngữ; Toán–Văn thường **tự luận** (tùy tỉnh) | P2+; khác chuẩn quốc gia |
 | 10–12 | Kiểm tra giữa kỳ / cuối kỳ | **Trường / tổ CM** | [Ma trận](../11-Chu-thich.md#ma-tran) + [đặc tả](../11-Chu-thich.md#dac-ta-de); TN + TL theo tỷ lệ Bộ/Sở gợi ý | Nhu cầu GV/trung tâm hàng ngày |
 | 12 | **Tốt nghiệp THPT** | **Bộ** (Cục QLCL) | Văn tự luận; còn lại trắc nghiệm theo QĐ 764 | Neo chuẩn [CBT](../11-Chu-thich.md#cbt) / thi thử |
-| Ngoài | ĐGNL, ĐGTD, IELTS… | ĐHQG / tổ chức khác | Format riêng | Không nằm core năm đầu |
+| Ngoài | ĐGNL, ĐGTD, IELTS… | ĐHQG / tổ chức khác | Chủ yếu trắc nghiệm / format riêng | MVP: đề **trộn môn** kiểu thi thử; không copy nguyên quy chế một kỳ cụ thể |
 
 **Nguyên tắc hình dung ngành:** cùng một môn Toán/Lý/Anh… có thể có **3–4 cấu trúc đề khác nhau** tùy kỳ. Platform sống được nhờ **template ma trận theo kỳ**, không nhờ một format cứng.
 

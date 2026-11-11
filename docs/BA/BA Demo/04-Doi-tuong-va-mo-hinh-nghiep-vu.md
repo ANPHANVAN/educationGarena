@@ -38,7 +38,7 @@ Giai đoạn 2 người: Teacher ≈ ContentAdmin; CenterAdmin có thể gộp T
 
 ### 3.1. Taxonomy
 
-- **Subject** — Toán, (sau) Lý…  
+- **Subject** — Toán, Lý, Hóa… (đa môn ngay MVP; chưa ưu tiên Văn / Tin / CN)  
 - **GradeLevel** — 10, 11, 12, (sau) 9…  
 - **CurriculumVersion** — GDPT2018, …  
 - **[Topic](./11-Chu-thich.md#chu-de)** — cây chủ đề theo Subject (+ Grade tùy chọn)  
@@ -87,8 +87,9 @@ Giai đoạn 2 người: Teacher ≈ ContentAdmin; CenterAdmin có thể gộp T
 
 ## 4. Quan hệ then chốt (chữ, không ERD formal)
 
-- 1 Subject có nhiều Topic.  
+- 1 Subject có nhiều Topic (L1/L2) và có thể gắn **nhiều blueprint template** (TN, kiểm tra, ô trong đề trộn môn…).  
 - 1 Question thuộc 1 Subject; gắn ≥1 Topic + **1 CognitiveLevel bắt buộc trên câu** (Đ/S không tách mức theo ý).  
+- 1 Blueprint / ExamVersion **có thể trộn nhiều Subject** (ĐGNL-style); mỗi ô ma trận biết mình thuộc môn nào.  
 - Câu Đ/S có đúng 4 ý (đáp án + [stem](./11-Chu-thich.md#stem) ý); mức/topic nằm ở câu.  
 - 1 khung bài thi có nhiều phần (cách tính + tổng điểm). 1 Blueprint bám khung đó và có nhiều BlueprintCell; granularity COARSE|FINE.  
 - 1 Blueprint sinh ra nhiều ExamVersion (kèm ExamSpec).  

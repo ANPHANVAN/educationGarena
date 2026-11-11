@@ -10,7 +10,8 @@ Sản phẩm phục vụ:
 |-----------|---------------|-------------|
 | Học sinh / phụ huynh | Luyện đề chuẩn cấu trúc, thi thử, theo dõi tiến bộ | Cá nhân (gói tài khoản) |
 | Giáo viên / trung tâm | [Ngân hàng câu hỏi](./11-Chu-thich.md#ngan-hang-cau-hoi) + **[sinh đề](./11-Chu-thich.md#sinh-de) theo [ma trận](./11-Chu-thich.md#ma-tran)** + tổ chức thi online | Trung tâm / giáo viên |
-| (Sau) Nhượng quyền môn khác | Cùng mô hình cho Lý, Hóa, Anh… | Partner môn |
+| Trung tâm / GV đa môn | Cùng engine cho các môn TN; đề trộn môn (ĐGNL-style) | Trung tâm / giáo viên |
+| (Sau) Partner nội dung môn khó | Văn / Tin / CN hoặc white-label | Partner môn |
 
 ## 2. Core vs “râu ria” (đã thống nhất hướng từ chat nội bộ)
 
@@ -30,7 +31,8 @@ Sản phẩm phục vụ:
 | QR / chống chụp màn hình phức tạp | Chi phí >> giá trị giai đoạn đầu |
 | Ranking / meme / gamification nặng | Chỉ có ý nghĩa khi đã có traffic và nội dung |
 | Import PDF/Word → AI parse đề hoàn hảo | Khó về UX + chất lượng; làm sau bằng API key user |
-| Nhượng quyền đa môn | Chỉ khi core Toán đã chạy và có doanh thu |
+| Pipeline riêng Văn / Tin / Công nghệ | Tự luận, nhánh đề, UX đặc thù — để ngỏ sau MVP |
+| Audio nghe | Media pipeline P2+ |
 
 **Nguyên tắc:** mọi feature phải trả lời được: *“Có giúp giáo viên tạo đề đúng ma trận / học sinh thi–luyện theo chuẩn đề thật không?”* Nếu không → backlog.
 
@@ -55,13 +57,15 @@ Sản phẩm phục vụ:
 
 **Phạm vi lớp (đã chốt):** phục vụ **cả lớp 10, 11, 12** (ôn TN + kiểm tra / luyện theo chương trình), không chỉ lớp 12.
 
-Ưu tiên kỹ thuật giai đoạn 1 vẫn là **đề trắc nghiệm theo cấu trúc tốt nghiệp THPT từ 2025** (Toán: 3 dạng thức), vì:
+Ưu tiên kỹ thuật giai đoạn 1: **đề trắc nghiệm theo cấu trúc TN THPT từ 2025** trên **nhiều môn** (Toán seed đủ 3 dạng; môn khác theo họ 2–3 phần / chỉ MCQ), cộng **đề trộn môn** kiểu ĐGNL, vì:
 
-- Chuẩn quốc gia; lớp 10–11 cũng ôn sớm / làm quen format.  
+- Hầu hết môn TN chỉ vài dạng thức → cùng engine.  
 - Chấm máy được → phù hợp team nhỏ.  
-- Demo Bộ cũng là [CBT](./11-Chu-thich.md#cbt) trắc nghiệm.
+- Demo Bộ cũng là [CBT](./11-Chu-thich.md#cbt) trắc nghiệm.  
+- GV chọn phần / môn linh hoạt; không bắt full đề Bộ mỗi lần.
 
-Thi vào 10 (tự luận thuần) là **mở rộng schema** (P2); kiểm tra định kỳ nhà trường dùng lại ma trận + 3 dạng thức + (sau) tự luận.
+**Chưa làm riêng đợt đầu:** Ngữ văn, Tin học, Công nghệ.  
+Thi vào 10 (tự luận thuần) là **P2**; kiểm tra định kỳ dùng lại ma trận + dạng TN + (sau) tự luận. Chi tiết phạm vi: [06](./06-MVP-uu-tien-va-pham-vi.md), [07](./07-Mo-rong-nhieu-mon.md).
 
 ## 5. Mô hình kiếm tiền (sơ bộ)
 
@@ -73,9 +77,17 @@ Thi vào 10 (tự luận thuần) là **mở rộng schema** (P2); kiểm tra đ
 
 Chi phí AI: **API key của user** khi cần parse đề — tránh burn vốn startup vào LLM.
 
-## 6. Quyết định đã chốt (2026-11-05)
+## 6. Quyết định đã chốt
 
-### 6.1. Segment
+### 6.0. Phạm vi môn (2026-11-11)
+
+- [x] **Đa môn ngay MVP** (engine + template); Toán seed sâu nhất.  
+- [x] Hỗ trợ đề **trộn môn** (ĐGNL-style, trắc nghiệm).  
+- [x] **Chưa làm riêng:** Ngữ văn, Tin học, Công nghệ (để ngỏ).  
+- [x] Xáo thứ tự câu (theo khối stimulus) + xáo A–D.  
+- [x] Audio / nghe: P2+.
+
+### 6.1. Segment (2026-11-05)
 
 - [x] **Cả lớp 10, 11, 12.**
 

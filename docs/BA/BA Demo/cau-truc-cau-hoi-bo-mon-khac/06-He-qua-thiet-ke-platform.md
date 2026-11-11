@@ -33,7 +33,7 @@ Mọi môn TN 2025 chỉ là **cấu hình** trên cùng mô hình đã mô tả
 | Code block | — | — | — | ✓ | — | — |
 | Bản đồ / Atlat UX | — | Địa | Sử (lược đồ) | — | — | — |
 
-**MVP Toán đã cover cột quan trọng nhất cho 80% môn trắc nghiệm.** Thiếu sớm nhất khi mở rộng: **Stimulus UX** (Anh/Sử) và **Track** (Tin).
+**Engine 3 dạng + stimulus cover phần lớn môn TN.** Đợt đầu **chưa** làm cột Tin (track) / Văn (essay) / CN. Stimulus UX cần sớm cho Anh–Sử–Địa; audio sau.
 
 ---
 
@@ -55,29 +55,30 @@ Khác nhau chỉ là:
 
 ---
 
-## 4. Thứ tự mở môn đề xuất (cân bằng effort & thị trường)
+## 4. Phạm vi môn (khớp BA Demo 06/07)
 
-| Ưu tiên | Môn | Lý do |
-|---------|-----|-------|
-| 0 | **Toán** | Đang làm; đủ 3 format khó |
-| 1 | **Vật lí hoặc Hóa** | Copy template 18-4-6; short 0,25; cùng GV tự nhiên |
-| 2 | **Tiếng Anh** | Nhu cầu lớn; scoring dễ; cần passage UX |
-| 3 | **Sinh / Địa** | Giống Lý về khung |
-| 4 | **Sử / GDKTPL** | Bỏ short; nặng ngữ liệu |
-| 5 | **Tin** | Thêm track |
-| 6 | **Văn** | Chấm tay / quy trình khác |
-| ? | Công nghệ | Market hẹp hơn trừ trung tâm nghề |
+**MVP (cùng engine, Toán seed sâu):** Toán, Lý, Hóa, Sinh, Địa, Sử, GDKTPL, Ngoại ngữ + đề **trộn môn** (ĐGNL-style).  
+Bank thực tế có thể mỏng ở môn phụ — quan trọng là **template + subject_id**, không phải đủ bank mọi môn ngày đầu.
+
+| Để ngỏ | Lý do trì | Khi mở cần thêm |
+|--------|-----------|-----------------|
+| **Tin** | Nhánh đề Phần II | Track trên blueprint + code render |
+| **Công nghệ** | Nhu cầu hẹp hơn sớm | Template 2 phần + stimulus kỹ thuật |
+| **Văn** | Tự luận / chấm tay | ESSAY + workflow chấm |
+
+Audio = P2+. Chi tiết cắt lớp: [../06-MVP-uu-tien-va-pham-vi.md](../06-MVP-uu-tien-va-pham-vi.md).
 
 ---
 
 ## 5. Cạm bẫy khi “nhìn toàn ngành”
 
-1. **Ôm 17 môn từ đầu** → bank chết, sản phẩm không demo được.  
+1. **Ôm UX đặc thù mọi môn** (Văn/Tin/CN/audio) ngay → loãng vốn. Đa môn TN OK; đặc thù để ngỏ.  
 2. **Hard-code điểm short 0,5** → gãy Lý/Hóa.  
-3. **Không có Stimulus** → Anh/Sử/Địa làm xấu.  
+3. **Không có Stimulus / xáo làm vỡ bundle** → Anh/Sử/Địa và Đ/S thí nghiệm hỏng.  
 4. **Coi Đ/S như 4 MCQ độc lập khi chấm** → sai mọi môn có Phần II.  
 5. **Làm Văn sớm vì “ai cũng học Văn”** → kẹt chấm bài.  
-6. **Bỏ qua kiểm tra định kỳ** — đây mới là tần suất GV dùng ma trận quanh năm; TN chỉ là mùa cao điểm.
+6. **Bỏ qua kiểm tra định kỳ / chọn phần linh hoạt** — tần suất GV quanh năm; TN chỉ mùa cao điểm.  
+7. **Nhầm L1/L2 với loại kỳ thi** — L1/L2 là cây chủ đề trong môn; nhiều dạng đề = nhiều template.
 
 ---
 

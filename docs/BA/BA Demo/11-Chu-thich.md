@@ -42,6 +42,8 @@ Cùng chủ đề “tích phân” có thể là câu NB dạng trắc nghiệm
 
 Hai độ sâu: [L1](#l1) và [L2](#l2). Mỗi câu gắn ít nhất một L1. L2 gắn khi cần ma trận [FINE](#fine).
 
+**Không nhầm:** L1/L2 là cây chủ đề **trong một môn**. Việc một môn tham gia nhiều loại đề (TN, kiểm tra, khối trong ĐGNL…) là nhờ **nhiều blueprint template / chọn phần**, không phải nhờ đổi nghĩa L1–L2. Xem [07](./07-Mo-rong-nhieu-mon.md).
+
 Đọc thêm: [10](./10-Danh-muc-chu-de-Toan-seed.md).
 
 <a id="l1"></a>
@@ -155,7 +157,9 @@ MVP: trường này tùy chọn. Ma trận [FINE](#fine) có thể lọc thêm n
 
 ## Stimulus
 
-Ngữ liệu dùng chung: hình, bảng số, đoạn văn. Thuộc câu (hoặc một nhóm câu), không phải một câu tính điểm riêng. Khi sinh đề, lấy cả bundle; không tách hình khỏi câu dựa vào hình đó.
+Ngữ liệu dùng chung: hình, bảng số, đoạn văn (sau: audio). Thuộc câu (hoặc một nhóm câu), không phải một câu tính điểm riêng.
+
+**Lưu ý vận hành:** sinh đề và **xáo thứ tự** phải giữ **bundle** (stimulus + các câu gắn) — xáo theo khối, không tách nửa. Xáo A–D chỉ áp dụng phương án MCQ. CBT có thể hiện 2 cột (ngữ liệu | câu). Chi tiết: [07 — Stimulus](./07-Mo-rong-nhieu-mon.md).
 
 <a id="question-item"></a>
 

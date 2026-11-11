@@ -148,14 +148,15 @@ Với Đ/S: ô = **số câu** (group) đúng chủ đề × mức — giống M
 
 ### 4.2. Ràng buộc nên có sớm
 
-5. Tránh trùng đề gần đây (cùng user/lớp): giảm xác suất câu đã ra trong N đề trước.  
-6. `exclude_used_in_session` khi học sinh luyện nhiều lần cùng ma trận (optional toggle).  
-7. Giới hạn số lần một câu xuất hiện toàn hệ thống / tháng (chống lộ đề nếu bán trung tâm).
+5. **Xáo đề:** xáo thứ tự câu theo **khối** (câu đơn hoặc bundle stimulus); **xáo phương án A–D** trên MCQ (đáp án đúng đi theo lựa chọn đã xáo).  
+6. Tránh trùng đề gần đây (cùng user/lớp): giảm xác suất câu đã ra trong N đề trước.  
+7. `exclude_used_in_session` khi học sinh luyện nhiều lần cùng ma trận (optional toggle).  
+8. Giới hạn số lần một câu xuất hiện toàn hệ thống / tháng (chống lộ đề nếu bán trung tâm).
 
 ### 4.3. Ràng buộc để sau
 
-8. IRT / độ khó thống kê từ lịch sử làm bài (p-value, discrimination).  
-9. Tạo nhiều mã đề tương đương (đảo thứ tự + thay biến số).
+9. IRT / độ khó thống kê từ lịch sử làm bài (p-value, discrimination).  
+10. Nhiều mã đề tương đương sâu hơn (thay biến số / isomorphic item) — xáo thứ tự + A–D đã nằm mục 4.2.
 
 ---
 
