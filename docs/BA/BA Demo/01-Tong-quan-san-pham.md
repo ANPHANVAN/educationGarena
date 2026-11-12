@@ -69,11 +69,11 @@ Thi vào 10 (tự luận thuần) là **P2**; kiểm tra định kỳ dùng lạ
 
 ## 5. Mô hình kiếm tiền (sơ bộ)
 
-1. Gói học sinh (tháng / kỳ / năm), có trial.  
+1. Gói học sinh (tháng / năm), có Free quota (vd. số đề tạo / tháng) + gói Cơ bản / Pro — khung chi tiết nháp ở [13](./13-Luong-man-hinh-va-chuc-nang.md) §4.  
 2. Gói giáo viên / trung tâm (ngân hàng riêng, số học sinh, số kỳ thi).  
-3. (Sau) White-label / nhượng quyền môn.
+3. (Sau) White-label / nhượng quyền môn; QR share link từ kho đề; cổng thanh toán online khi traffic ổn.
 
-**Thời gian đầu (đã chốt):** bank còn nhỏ, user ít → **mở toàn bộ luyện/thi thử cho chất lượng trải nghiệm**, chưa siết paywall / giới hạn kho. Paywall bật sau khi có đủ nội dung + traffic.
+**Thời gian đầu (đã chốt):** bank còn nhỏ, user ít → **mở toàn bộ luyện/thi thử + tạo đề cho chất lượng trải nghiệm**, chưa siết paywall. Thiết kế `SubscriptionPlan` / `Entitlement` sớm; thu tiền sau khi nền tảng + bank đủ.
 
 Chi phí AI: **API key của user** khi cần parse đề — tránh burn vốn startup vào LLM.
 

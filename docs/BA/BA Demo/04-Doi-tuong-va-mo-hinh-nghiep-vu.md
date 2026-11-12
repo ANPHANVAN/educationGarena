@@ -6,7 +6,7 @@
 
 | Role | Mục tiêu | Quyền chính (MVP) |
 |------|----------|-------------------|
-| **Student** | Luyện / thi thử, xem điểm, (sau) xếp hạng | Làm bài, xem lịch sử, xem giải (nếu gói cho phép) |
+| **Student** | Tự tạo đề (khung điểm / ma trận / chọn tay) → kho đề → thi–luyện; xem điểm; (sau) gói tài khoản | Cùng engine tạo đề với GV; làm bài; xem lịch sử / giải theo entitlement; share link (QR sau) |
 | **Teacher** | Nhập câu, tạo [ma trận](./11-Chu-thich.md#ma-tran), [sinh đề](./11-Chu-thich.md#sinh-de), mở kỳ thi cho lớp/trung tâm | CRUD câu (tenant), blueprint, exam, xem báo cáo lớp |
 | **CenterAdmin** | Quản lý giáo viên, học sinh, gói dịch vụ trung tâm | User, phân quyền, cấu hình kỳ thi |
 | **[ContentAdmin](./11-Chu-thich.md#content-admin)** (team mình) | Duyệt câu “bank chung” của nền tảng | Approve/reject, [taxonomy](./11-Chu-thich.md#taxonomy) hệ thống |

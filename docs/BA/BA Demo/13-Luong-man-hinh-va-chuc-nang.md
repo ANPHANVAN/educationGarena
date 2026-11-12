@@ -1,65 +1,89 @@
 # 13 — Luồng màn hình & chức năng chính
 
-> v0.7 · Hình dung sản phẩm (chưa có UI trong `src/`)  
-> Trọng tâm: **2 sơ đồ luồng** + màn/mục đích. Chi tiết rule xem `01`–`09`.
+> v0.9 · Hình dung sản phẩm (chưa có UI trong `src/`)  
+> Trọng tâm: **một bộ màn hình dùng chung** + quan hệ điều hướng. Role chỉ quyết định *ai vào được nhánh nào*, **không duplicate page**. Chi tiết rule: `01`–`09`.
 
 ---
 
 ## 1. Không gian sản phẩm
 
-| Tầng | Ai | Việc chính |
-|------|-----|------------|
-| Nghiệp vụ | Học sinh | Thi CBT / luyện → xem điểm |
-| Nghiệp vụ | Giáo viên | Bank câu → tạo đề → kho đề → mở kỳ thi |
-| Nghiệp vụ | ContentAdmin | Duyệt câu vào bank hệ thống |
-| Nền tảng | SystemAdmin | Master data, user/role, config, audit log, notification, file |
+| Tầng | Việc chính |
+|------|------------|
+| Nghiệp vụ | Bank câu → tạo đề (khung điểm / ma trận / chọn tay) → kho đề → link / kỳ thi → CBT → kết quả |
+| Nền tảng | Master data, user/role, config, audit, notification, file, (sau) gói & thanh toán |
 
-**Hai cách tạo đề (ngang nhau):** ma trận (bốc 1 lần, vẫn đổi câu được) **hoặc** chọn tay từng câu. Sau khóa → cùng **Kho đề** → cùng link cho cả lớp.
+**Ai dùng gì (permission, không tách app):**
+
+| Nhánh màn | Ai vào (MVP) |
+|-----------|----------------|
+| Bank câu, tồn kho, form câu | GV (+ HS sau nếu gói cho phép) |
+| Tạo đề → kho đề → share link | **HS + GV** (cùng màn) |
+| Lớp / kỳ thi / báo cáo lớp | GV |
+| Duyệt câu hệ thống | ContentAdmin |
+| Console hệ thống | SystemAdmin |
+| Gói tài khoản | User đã login (khi bật paywall) |
+
+Hai cách tạo đề: **ma trận** hoặc **chọn tay** → khóa → **Kho đề** → link. Paywall siết **quota**, không cắt pipeline tạo đề.
 
 ---
 
-## 2. Sơ đồ luồng
+## 2. Sơ đồ luồng màn hình
 
-### 2.1 Nghiệp vụ (thi / bank / đề)
+### 2.1 Nghiệp vụ — một đồ thị màn
 
 ```mermaid
 flowchart TB
-  Login([Đăng nhập]) --> Role{Vai trò}
+  Login([Đăng nhập]) --> Home[Home]
 
-  Role -->|HS| HSHome[Home HS]
-  Role -->|GV| GVHome[Home GV]
-  Role -->|ContentAdmin| Review[Hàng đợi duyệt]
+  Home --> Bank[DS câu hỏi]
+  Bank --> QForm[Form câu]
+  Bank --> Stock[Tồn kho]
+  QForm -.-> Review[Hàng đợi duyệt]
 
-  HSHome --> HSList[DS đợt / đề]
-  HSList --> CBT[Làm bài CBT]
-  CBT --> Result[Kết quả]
-  Result -.->|P1| ReviewAns[Xem lại + giải]
-  HSHome -.->|P1| Practice[Luyện theo chủ đề]
-  Practice --> CBT
-
-  GVHome --> Bank[DS câu hỏi]
-  Bank --> QForm[Tạo / sửa câu]
-  QForm -.-> Review
-
-  GVHome --> Path{Tạo đề}
-  Path -->|Ma trận| Frame[Khung điểm]
+  Home --> Create{Tạo đề}
+  Create -->|Ma trận| Frame[Khung điểm]
   Frame --> Matrix[Ma trận]
   Matrix --> Gen[Sinh đề / bốc]
-  Path -->|Chọn tay| Picker[Picker chọn câu]
+  Create -->|Chọn tay| Picker[Picker chọn câu]
   Gen --> Spec[Đặc tả DRAFT]
   Picker --> Spec
   Spec --> Preview[Preview]
   Preview --> Lock[Khóa đề]
+  Lock --> Kho[Kho đề]
 
-  Lock --> KhoDe[Kho đề của GV]
-  GVHome --> KhoDe
-  KhoDe --> ExamDetail[Chi tiết đề]
-  ExamDetail --> Campaign[Mở kỳ thi / link]
-  Campaign --> HSList
-  Campaign --> CampDetail[Theo dõi Attempt]
+  Home --> Kho
+  Kho --> ExamDetail[Chi tiết đề]
+  ExamDetail --> Share[Link thi / luyện]
+  ExamDetail --> Campaign[Mở kỳ thi]
+  Campaign --> CampDetail[Chi tiết kỳ / Attempt]
+  Home --> Classes[Lớp / cohort]
+  Classes --> Campaign
+  CampDetail -.->|P1| Report[Báo cáo lớp]
+  Kho -.->|Sau| QR[QR share link]
+
+  Home --> OpenList[DS đợt–đề / vào bằng mã]
+  OpenList --> CBT[CBT]
+  Share --> CBT
+  Campaign --> OpenList
+  CBT --> Confirm[Xác nhận nộp]
+  Confirm --> Result[Kết quả]
+  Result -.->|P1| ReviewAns[Xem lại + giải]
+
+  Home -.->|P1| Plan[Gói tài khoản]
 ```
 
-### 2.2 Nền tảng (master data / RBAC / config / log / notification / file)
+**Quan hệ cần nhớ**
+
+| Từ | → | Ý nghĩa |
+|----|---|--------|
+| Home | Bank / Tạo đề / Kho đề / DS đợt / Lớp / Gói | Hub — hiện mục theo permission |
+| Tạo đề | Khung điểm → Ma trận → Sinh đề **hoặc** Picker | Hai đường vào cùng Đặc tả |
+| Khóa đề | Kho đề | Đề cố định mới share / mở kỳ được |
+| Chi tiết đề | Link thi **và/hoặc** Mở kỳ thi | Link đủ cho cá nhân; kỳ thi cho lớp (GV) |
+| Link / Kỳ thi | CBT | Cùng màn làm bài |
+| Kho đề | QR *(sau)* | Share nhanh, không màn riêng theo role |
+
+### 2.2 Nền tảng
 
 ```mermaid
 flowchart TB
@@ -72,94 +96,108 @@ flowchart TB
   CRUD --- MD3[Ownership / Template điểm]
 
   Console --> Users[DS User]
-  Users --> AssignRole[Gán Role cho User]
+  Users --> AssignRole[Gán Role]
   Console --> Roles[DS Role]
-  Roles --> AssignPerm[Gán Permission cho Role]
+  Roles --> AssignPerm[Gán Permission]
 
-  Console --> Config[Cấu hình động / Feature flag]
+  Console --> Config[Config / Feature flag]
   Console --> Audit[Audit log]
   Console --> Notif[Notification]
   Console --> Files[File Management]
+  Console -.->|Sau| Billing[Gói / Entitlement / Thanh toán]
 ```
 
 ---
 
-## 3. Màn hình nghiệp vụ
+## 3. Catalogue màn (mỗi màn một lần)
 
-### Học sinh
-
-| Màn | Mục đích |
-|-----|----------|
-| Đăng nhập | Vào hệ thống |
-| Home HS | Thấy đợt/đề được mở |
-| DS đợt–đề / vào bằng mã | Chọn bài thi |
-| CBT | Timer, palette, trả lời, autosave |
-| Xác nhận nộp | Tránh nộp nhầm |
-| Kết quả | Điểm sau chấm máy |
-| Xem lại + giải | Ôn (P1) |
-| Luyện theo chủ đề | Chọn phạm vi ôn, CBT mode luyện (P1) |
-
-### Giáo viên — bank
-
-| Màn | Mục đích |
-|-----|----------|
-| Home GV | Hub: Bank / Kho đề / Tạo đề / Kỳ thi |
-| DS câu hỏi | Quản lý bank |
-| Form câu (MCQ / Đ/S / Short) | Nhập nội dung + metadata |
-| Tồn kho | Đủ/thiếu theo topic × mức × format |
-| Hàng đợi duyệt *(ContentAdmin)* | Approve / Reject vào bank system |
-
-### Giáo viên — đề & kỳ thi
-
-| Màn | Mục đích |
-|-----|----------|
-| Khung bài thi | Số phần + cách tính điểm |
-| Ma trận / DS Blueprint | Quy tắc bốc theo ô |
-| Sinh đề / báo thiếu | Bốc theo ô; thiếu thì không sinh cụt |
-| Picker chọn câu | Chọn tay từ bank, không random |
-| Đặc tả DRAFT | Review / đổi câu / xáo trước khóa |
-| Preview | Soi mắt thí sinh |
-| Khóa đề | Snapshot cố định |
-| **Kho đề** | Quản lý mọi đề đã tạo; copy link; mở kỳ |
-| Chi tiết đề | Xem đề; mở thi / nhân bản |
-| Kỳ thi (Campaign) | Thời gian mở; link chung cả lớp |
-| Chi tiết kỳ | Ai đã làm, điểm |
-| Lớp / cohort | Gắn HS (P0–P1) |
-| Báo cáo lớp | Tổng hợp điểm (P1) |
+| Màn | Mục đích | Vào từ |
+|-----|----------|--------|
+| Đăng nhập | Vào hệ thống | — |
+| Home | Hub theo permission | Login |
+| DS câu hỏi | Quản lý bank | Home |
+| Form câu | Nhập / sửa MCQ · Đ/S · Short | DS câu hỏi |
+| Tồn kho | Đủ/thiếu theo topic × mức × format | DS câu hỏi |
+| Hàng đợi duyệt | Approve / Reject vào bank hệ thống | Form câu / Home (ContentAdmin) |
+| Khung điểm | Số phần + cách tính điểm | Home → Tạo đề |
+| Ma trận | Quy tắc bốc theo ô (chủ đề × mức × dạng) | Khung điểm |
+| Sinh đề / báo thiếu | Bốc; thiếu thì không sinh cụt | Ma trận |
+| Picker chọn câu | Chọn tay từ bank | Home → Tạo đề |
+| Đặc tả DRAFT | Review / đổi câu / xáo trước khóa | Sinh đề hoặc Picker |
+| Preview | Soi mắt thí sinh | Đặc tả |
+| Khóa đề | Snapshot cố định | Preview |
+| **Kho đề** | DS đề đã tạo; copy link; (sau) QR | Home; sau Khóa đề |
+| Chi tiết đề | Xem / nhân bản / mở link / mở kỳ | Kho đề |
+| Link thi / luyện | URL dùng chung cho Attempt | Chi tiết đề |
+| QR share *(sau)* | QR trỏ cùng link | Kho đề / Chi tiết đề |
+| Kỳ thi | Thời gian mở; gắn đề + lớp | Chi tiết đề; Lớp |
+| Chi tiết kỳ | Ai đã làm, điểm | Kỳ thi |
+| Lớp / cohort | Gắn HS vào lớp | Home |
+| Báo cáo lớp *(P1)* | Tổng hợp điểm | Chi tiết kỳ |
+| DS đợt–đề / mã | Chọn bài được mở hoặc nhập mã | Home; Kỳ thi |
+| CBT | Timer, palette, trả lời, autosave | DS đợt; Link |
+| Xác nhận nộp | Tránh nộp nhầm | CBT |
+| Kết quả | Điểm sau chấm máy | Nộp |
+| Xem lại + giải *(P1)* | Ôn; có thể gắn entitlement | Kết quả |
+| Gói tài khoản *(khi thu tiền)* | Quota / chọn gói / thanh toán | Home; chạm hạn mức |
 
 ---
 
-## 4. Màn hình nền tảng
+## 4. Gói tài khoản *(nháp — thiết kế trước, thu tiền sau)*
+
+> Nền tảng + bank ổn → có user → mới siết quota / thu tiền (`01` §6.4). Pháp lý: `12`.
+
+| Gói | Giá (nháp) | Chu kỳ | Quota gợi ý |
+|-----|------------|--------|-------------|
+| **Free** | 0 | — | ~5 đề khóa / tháng; thi đề được share; kết quả cơ bản |
+| **Cơ bản** | ~49–79k / tháng hoặc ~399–599k / năm | Tháng hoặc năm | ~30–50 đề / tháng; xem lại + giải |
+| **Pro** *(sau)* | Cao hơn | Tháng / năm | Quota cao; bank cá nhân |
+
+Gói GV / trung tâm (số câu, số đề, số HS, số kỳ): outline sau — cùng màn Gói, khác Plan code.
+
+**Backlog không quên:** schema Plan / Entitlement / usage counter sớm; UI + cổng thanh toán khi traffic ổn; đồng ý phụ huynh trước bán gói HS; **QR share từ Kho đề**.
+
+---
+
+## 5. Màn hình nền tảng
 
 | Màn | Mục đích |
 |-----|----------|
-| Console admin | Điểm vào tầng hệ thống |
-| Hub Master data | Trỏ tới từng loại danh mục |
+| Console admin | Vào tầng hệ thống |
+| Hub Master data | Trỏ từng danh mục |
 | CRUD master | Môn, lớp, Topic, mức tư duy, dạng thức, ownership, template điểm… |
-| DS User + gán Role | Quản trị tài khoản / vai trò |
-| DS Role + gán Permission | Phân quyền đơn giản |
-| Config / feature flag | Đổi hành vi không redeploy |
+| DS User + gán Role | Tài khoản / vai trò |
+| DS Role + gán Permission | Phân quyền |
+| Config / feature flag | Đổi hành vi (kể cả paywall) không redeploy |
 | Audit log | Ai làm gì, trên entity nào |
-| Notification | Template / gửi thông báo hệ thống (banner, in-app, email…) |
-| File Management | Quản lý file đã upload (ảnh stem, media, export…); xem / xóa / giới hạn |
+| Notification | Banner / in-app / email… |
+| File Management | Upload stem / media / export |
+| Gói / thanh toán *(sau)* | Plan, entitlement, đối soát |
 
 ---
 
-## 5. Sitemap gọn
+## 6. Sitemap gọn *(route theo domain, không nhân đôi theo role)*
 
 ```
 /login
-/student/…          home, đợt–đề, CBT, kết quả, (luyện)
-/teacher/…          home, questions, exams ← Kho đề,
-                    exams/new/matrix | new/fixed, picker,
-                    blueprints, campaigns, classes
+/app/…              home
+                    questions, questions/:id
+                    exams                    ← Kho đề
+                    exams/new/matrix | new/fixed
+                    exams/:id                ← chi tiết / preview / khóa
+                    campaigns, classes
+                    attempts/:id             ← CBT / kết quả / xem lại
+                    plans                    ← gói (khi bật)
 /content/…          review-queue
-/system/…           master-data, users, roles, config, audit-logs,
-                    notifications, files
+/system/…           master-data, users, roles, config,
+                    audit-logs, notifications, files, (billing)
 ```
+
+Menu Home ẩn/hiện mục theo permission — **không** `/student/exams/new` vs `/teacher/exams/new`.
 
 ---
 
-## 6. Không làm phức tạp sớm
+## 7. Không làm phức tạp sớm
 
-Proctoring ML, ranking/meme nặng, AI parse PDF, tự luận Văn, audio, IAM enterprise, microservices.
+Proctoring ML, ranking/meme nặng, AI parse PDF, tự luận Văn, audio, IAM enterprise, microservices.  
+Thu tiền / QR: sau nền tảng ổn — entitlement thiết kế sẵn.
